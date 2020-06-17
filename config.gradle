@@ -1,0 +1,26 @@
+ext {
+    //有重用的地方写在这里面，保证代码一致
+    android = [compileSdkVersion       : 29,
+               buildToolsVersion       : "29.0.3",
+               minSdkVersion           : 16,
+               targetSdkVersion        : 29,
+               versionCode             : 1,
+               versionName             : "1.0.0",
+               applicationId           :"com.example.newbee",
+
+
+//               espressoSdkVersion      : "2.2.2"
+    ]
+    dependencies = [
+//            "appcompat-x"            : "androidx.appcompat:appcompat:${android["androidxappcompatVersion"]}",
+
+            "androidxappcompat"      : 'androidx.appcompat:appcompat:1.1.0',
+            "androidxconstraintlayout" : 'androidx.constraintlayout:constraintlayout:1.1.3',
+            "junit"                  : 'junit:junit:4.12',
+            "androidxtest"           : 'androidx.test.ext:junit:1.1.1',
+            "androidxespresso"       : 'androidx.test.espresso:espresso-core:3.2.0',
+            "arouter-api"            : 'com.alibaba:arouter-api:1.5.0',//ARouter api
+            "arouter-compiler"       : 'com.alibaba:arouter-compiler:1.2.2',//ARouter
+
+    ]
+}

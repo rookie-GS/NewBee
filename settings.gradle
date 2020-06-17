@@ -1,0 +1,4 @@
+include ':base_common_lib'
+include ':homelib'
+include ':testlib'
+include ':app'
