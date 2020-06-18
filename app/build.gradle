@@ -6,6 +6,7 @@ kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
     }
+    generateStubs = true
 }
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -22,6 +23,7 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
+        multiDexEnabled true
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
@@ -50,8 +52,7 @@ dependencies {
     implementation rootProject.ext.dependencies["androidxtest"]
     implementation rootProject.ext.dependencies["androidxespresso"]
     implementation project(':base_common_lib')
-    implementation rootProject.ext.dependencies["arouter-api"]
-    implementation rootProject.ext.dependencies["arouter-compiler"]
+    rootProject.allModuleDependencies(dependencies)
     if(isNeedHomeModule){
         implementation project(':homelib')
     }

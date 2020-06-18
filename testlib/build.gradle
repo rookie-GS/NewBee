@@ -6,6 +6,12 @@ if (!isNeedTestModule.toBoolean()) {
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+    generateStubs = true
+}
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -24,22 +30,27 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        sourceSets{
-            main{
-                if(!isNeedTestModule.toBoolean()){
-                    manifest.srcFile'src/main/AndroidManifest.xml'
-                }else {
-                    manifest.srcFile'src/main/java/AndroidManifest.xml'
-                }
-            }
-        }
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    sourceSets{
+        main{
+            if(!isNeedTestModule.toBoolean()){
+                manifest.srcFile'src/main/AndroidManifest.xml'
+            }else {
+                manifest.srcFile'src/main/java/AndroidManifest.xml'
+            }
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("boolean","debug","false")
+        }
+        debug{
+            buildConfigField("boolean","debug","true")
+
         }
     }
 }
@@ -52,6 +63,6 @@ dependencies {
     implementation rootProject.ext.dependencies["androidxtest"]
     implementation rootProject.ext.dependencies["androidxespresso"]
     implementation project(':base_common_lib')
-    implementation rootProject.ext.dependencies["arouter-api"]
-    implementation rootProject.ext.dependencies["arouter-compiler"]
+    rootProject.allModuleDependencies(dependencies)
+
 }

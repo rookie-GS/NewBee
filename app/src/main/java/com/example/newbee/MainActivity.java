@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.base_common_lib.Arouter_path;
+import com.example.base_common_lib.Utils.LogUtils;
 import com.example.homelib.HomeActivity;
 import com.example.testlib.DemoMainActivity;
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tv_home = findViewById(R.id.tv_home);
         tv_test = findViewById(R.id.tv_test);
+        LogUtils.e("测试日志：入口页");
         tv_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

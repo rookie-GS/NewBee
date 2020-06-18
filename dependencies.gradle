@@ -1,0 +1,19 @@
+
+static def allModuleDependencies(DependencyHandler dependencyHandler) {
+    //方法数超出
+    dependencyHandler.implementation 'com.android.support:multidex:1.0.3'
+    //阿里路由
+    dependencyHandler.implementation 'com.alibaba:arouter-api:1.5.0'
+    dependencyHandler.kapt 'com.alibaba:arouter-compiler:1.2.2'
+    //dokit工具
+    dependencyHandler.debugImplementation "com.didichuxing.doraemonkit:doraemonkit:3.1.6"
+    dependencyHandler.releaseImplementation "com.didichuxing.doraemonkit:doraemonkit-no-op:3.1.6"
+    //log
+    dependencyHandler.implementation  'com.orhanobut:logger:2.2.0'
+    //material_design
+    dependencyHandler.implementation 'com.google.android.material:material:1.1.0-alpha09'
+    //glide
+    dependencyHandler.implementation 'com.github.bumptech.glide:glide:4.11.0'
+    dependencyHandler.kapt 'com.github.bumptech.glide:compiler:4.11.0'
+}
+ext.allModuleDependencies = this.&allModuleDependencies

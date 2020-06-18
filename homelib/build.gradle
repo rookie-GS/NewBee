@@ -6,6 +6,12 @@
  apply plugin: 'kotlin-android'
  apply plugin: 'kotlin-android-extensions'
  apply plugin: 'kotlin-kapt'
+ kapt {
+     arguments {
+         arg("AROUTER_MODULE_NAME", project.getName())
+     }
+     generateStubs = true
+ }
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -41,6 +47,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("boolean","debug","false")
+        }
+        debug{
+            buildConfigField("boolean","debug","true")
+
         }
     }
 }
@@ -53,7 +64,6 @@ dependencies {
     implementation rootProject.ext.dependencies["androidxtest"]
     implementation rootProject.ext.dependencies["androidxespresso"]
     implementation project(':base_common_lib')
-    implementation rootProject.ext.dependencies["arouter-api"]
-    implementation rootProject.ext.dependencies["arouter-compiler"]
+    rootProject.allModuleDependencies(dependencies)
 
 }

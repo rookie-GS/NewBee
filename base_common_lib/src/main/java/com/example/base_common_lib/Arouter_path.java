@@ -11,8 +11,8 @@ public class Arouter_path {
      */
     public static final int LOGIN_AR= 1001001;
     /**主页*/
-    public static final String HOME_PAGE = "/app/home";
+    public static final String HOME_PAGE = "/home/homepage";
     /**测试主页*/
-    public static final String TEST_HOME_PAGE = "/app/testhome";
+    public static final String TEST_HOME_PAGE = "/test/testpage";
 
 }

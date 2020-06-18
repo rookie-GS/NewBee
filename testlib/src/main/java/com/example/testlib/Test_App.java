@@ -1,21 +1,22 @@
-package com.example.newbee;
+package com.example.testlib;
+
 import androidx.multidex.MultiDexApplication;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.didichuxing.doraemonkit.DoraemonKit;
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
 
-
-public class App extends MultiDexApplication {
-    public static final boolean isDebug = BuildConfig.DEBUG;
+/**
+ * 作者：G_JS
+ * 时间：
+ */
+public class Test_App extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        if(isDebug){
+        if(BuildConfig.DEBUG){
             ARouter.openLog();
             ARouter.openDebug();
             DoraemonKit.install(this);
-            Logger.addLogAdapter(new AndroidLogAdapter());
         }
         ARouter.init(this);
     }
