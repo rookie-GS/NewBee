@@ -14,7 +14,7 @@ buildscript {
         // in the individual module build.gradle files
         //dokit
         classpath 'com.android.tools.build:gradle:3.6.1'
-        classpath 'com.didichuxing.doraemonkit:doraemonkit-plugin:3.1.6'
+        classpath 'com.didichuxing.doraemonkit:doraemonkit-plugin:3.1.8'
     }
     buildscript {
         apply from: 'dependencies.gradle'

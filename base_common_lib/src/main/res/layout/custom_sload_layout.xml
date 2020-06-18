@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.base_common_lib.loding.PPTVLoading
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="60dp"
+    android:layout_height="20dp"
+    android:id="@+id/pp_loading"
+    android:layout_gravity="center"
+    android:padding="20dp">
+
+</com.example.base_common_lib.loding.PPTVLoading>
