@@ -45,5 +45,7 @@ static def allModuleDependencies(DependencyHandler dependencyHandler) {
     dependencyHandler.implementation 'com.squareup.okhttp3:okhttp:4.7.2'
     dependencyHandler.implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     dependencyHandler.implementation 'com.orhanobut:hawk:2.0.0-Alpha'
+    //Glide transform
+    dependencyHandler.implementation 'jp.wasabeef:glide-transformations:4.1.0'
 }
 ext.allModuleDependencies = this.&allModuleDependencies

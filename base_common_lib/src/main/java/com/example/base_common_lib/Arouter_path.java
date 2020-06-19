@@ -19,4 +19,6 @@ public class Arouter_path {
     public static final String TEST_HOME_PAGE = "/test/testpage";
     /**弹窗测试主页*/
     public static final String TEST_DIALOG_PAGE = "/test/dialogpage";
+    /**图片测试主页*/
+    public static final String TEST_IMAGE_PAGE = "/test/image";
 }

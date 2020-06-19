@@ -80,7 +80,7 @@ public class HomeActivity extends BaseMVPActivity<IHomeView, MainPreSenter> impl
         requestOptions.placeholder(R.color.black);
         requestOptions.transform(new CircleCrop());
         Glide.with(this)
-                .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592283318054&di=03e6ab9aad4a285cc567cb4b09e06403&imgtype=0&src=http%3A%2F%2Ffile05.16sucai.com%2F2015%2F0710%2F0146fbc40ac9b6e8d8d5f0a33ba54d7b.jpg")
+                .load("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=245785532,241083071&fm=26&gp=0.jpg")
                 .apply(requestOptions)
                 .into(iv_pic);
         RequestOptions requestOptions02 = new RequestOptions();

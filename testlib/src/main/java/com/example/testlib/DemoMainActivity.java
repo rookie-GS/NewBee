@@ -59,6 +59,11 @@ public class DemoMainActivity extends BaseTitleActivity implements View.OnClickL
         bean.setName("弹窗测试");
         bean.setArouter(Arouter_path.TEST_DIALOG_PAGE);
         mList.add(bean);
+
+        Demo_list_bean bean_2 = new Demo_list_bean();
+        bean_2.setName("图片测试");
+        bean_2.setArouter(Arouter_path.TEST_IMAGE_PAGE);
+        mList.add(bean_2);
         demo_list_adapter.notifyDataSetChanged();
     }
 

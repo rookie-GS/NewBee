@@ -19,6 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Dialog_Activity"></activity>
+        <activity android:name=".GlideActivity"></activity>
+
     </application>
 
 </manifest>
