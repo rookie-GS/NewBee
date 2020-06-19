@@ -1,11 +1,7 @@
 package com.example.testlib;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.graphics.BlurMaskFilter;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ImageView;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
@@ -14,6 +10,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
+import com.example.base_common_lib.Constant;
 
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
@@ -51,6 +48,7 @@ public class GlideActivity extends BaseTitleActivity {
 
     }
 
+    @SuppressLint("CheckResult")
     @Override
     protected void initData() {
         RequestOptions requestOptions = new RequestOptions();
@@ -58,14 +56,14 @@ public class GlideActivity extends BaseTitleActivity {
         requestOptions.placeholder(R.color.black);
 
         Glide.with(this)
-                .load("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=245785532,241083071&fm=26&gp=0.jpg")
+                .load(Constant.kobe_image_url)
                 .apply(requestOptions)
                 .into(iv_pic_one);
         RequestOptions requestOptions02 = new RequestOptions();
         requestOptions02.placeholder(R.color.black);
         requestOptions02.placeholder(R.color.black);
         Glide.with(this)
-                .load("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=245785532,241083071&fm=26&gp=0.jpg")
+                .load(Constant.kobe_image_url)
                 .apply(requestOptions02)
                 .transition(DrawableTransitionOptions.withCrossFade(3000)) // 渐变
                 .into(iv_pic_two);
@@ -74,7 +72,7 @@ public class GlideActivity extends BaseTitleActivity {
         requestOptions03.placeholder(R.color.black);
         requestOptions03.transform(new RoundedCorners(50));
         Glide.with(this)
-                .load("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=245785532,241083071&fm=26&gp=0.jpg")
+                .load(Constant.kobe_image_url)
                 .apply(requestOptions03)
                 .into(iv_pic_three);
         RequestOptions requestOptions04 = new RequestOptions();
@@ -82,7 +80,7 @@ public class GlideActivity extends BaseTitleActivity {
         requestOptions04.placeholder(R.color.black);
         requestOptions04.transform(new CircleCrop());
         Glide.with(this)
-                .load("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=245785532,241083071&fm=26&gp=0.jpg")
+                .load(Constant.kobe_image_url)
                 .apply(requestOptions04)
                 .into(iv_pic_four);
         RequestOptions requestOptions05 = new RequestOptions();
@@ -90,7 +88,7 @@ public class GlideActivity extends BaseTitleActivity {
         requestOptions05.placeholder(R.color.black);
         requestOptions05.transform(new BlurTransformation(20, 2));
         Glide.with(this)
-                .load("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=245785532,241083071&fm=26&gp=0.jpg")
+                .load(Constant.kobe_image_url)
                 .apply(requestOptions05)
                 .into(iv_pic_five);
     }
