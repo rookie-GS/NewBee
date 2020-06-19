@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/tranparent">
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="350dp"
+        android:background="@drawable/quanxian_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/tv_quanxain_close"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳过"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="温馨提示"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="开启悬浮窗权限，不错过每个游戏福利"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="我们为您准备了礼包，优惠券等超多福利，还能和小伙伴一起社区交流，更有官方攻略助你一臂之力，快来加入我们吧"/>
+            <LinearLayout
+                android:layout_marginTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="下次不再提醒"/>
+                
+            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_goto_set"
+                    android:layout_marginTop="30dp"
+                    android:layout_gravity="center"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:background="@drawable/bt_corner"
+                    android:text="去开启"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

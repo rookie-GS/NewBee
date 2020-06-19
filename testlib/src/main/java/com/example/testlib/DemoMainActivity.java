@@ -1,17 +1,27 @@
 package com.example.testlib;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
 import com.example.base_common_lib.Utils.LogUtils;
+import com.example.base_common_lib.bean.Demo_list_bean;
+
+import java.util.ArrayList;
 
 @Route( path = Arouter_path.TEST_HOME_PAGE)
-public class DemoMainActivity extends BaseTitleActivity {
-
+public class DemoMainActivity extends BaseTitleActivity implements View.OnClickListener{
+    RecyclerView rv_list;
+    Demo_list_adapter demo_list_adapter;
+    ArrayList<Demo_list_bean> mList = new ArrayList<>();
     @Override
     protected int getContentView() {
         return R.layout.activity_main_demo;
@@ -19,7 +29,7 @@ public class DemoMainActivity extends BaseTitleActivity {
 
     @Override
     protected String setTextTitle() {
-        return "测试页面";
+        return "选择测试项目";
     }
 
     @Override
@@ -30,11 +40,30 @@ public class DemoMainActivity extends BaseTitleActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
         LogUtils.e("测试日志：测试页");
-
+        rv_list = findViewById(R.id.rv_list);
+        rv_list.setLayoutManager(new LinearLayoutManager(this));
+        demo_list_adapter = new Demo_list_adapter(mList);
+        rv_list.setAdapter(demo_list_adapter);
+        demo_list_adapter.setItemClick(new Demo_list_adapter.ItemClicklisener() {
+            @Override
+            public void ItemOnclick(String router) {
+                ARouter.getInstance().build(router).navigation();
+            }
+        });
     }
 
     @Override
     protected void initData() {
+        mList.clear();
+        Demo_list_bean bean = new Demo_list_bean();
+        bean.setName("弹窗测试");
+        bean.setArouter(Arouter_path.TEST_DIALOG_PAGE);
+        mList.add(bean);
+        demo_list_adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }

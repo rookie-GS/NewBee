@@ -1,4 +1,7 @@
 package com.example.base_common_lib;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 /**
  * @Author G_JS
  *
@@ -14,5 +17,6 @@ public class Arouter_path {
     public static final String HOME_PAGE = "/home/homepage";
     /**测试主页*/
     public static final String TEST_HOME_PAGE = "/test/testpage";
-
+    /**弹窗测试主页*/
+    public static final String TEST_DIALOG_PAGE = "/test/dialogpage";
 }
