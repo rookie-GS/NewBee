@@ -31,33 +31,6 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
-            <ImageView
-                android:id="@+id/iv_pic"
-                android:layout_marginTop="20dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"/>
-            <ImageView
-                android:id="@+id/iv_pic02"
-                android:layout_marginTop="20dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"/>
-            <ImageView
-                android:id="@+id/iv_pic03"
-                android:layout_marginTop="20dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"/>
-            <ImageView
-                android:id="@+id/iv_pic04"
-                android:layout_marginTop="20dp"
-                android:layout_width="100dp"
-                android:layout_height="100dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/tv_net_text"
-                android:textSize="14sp"
-                android:textColor="@color/black" />
         </LinearLayout>
 
     </ScrollView>

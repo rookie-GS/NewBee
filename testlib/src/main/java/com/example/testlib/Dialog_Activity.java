@@ -39,7 +39,10 @@ public class Dialog_Activity extends BaseTitleActivity {
     protected String setTextTitle() {
         return "弹窗测试页面";
     }
-
+    @Override
+    protected int setTitlecolor() {
+        return R.color.black;
+    }
     @Override
     protected boolean setToolbvis() {
         return true;
@@ -47,7 +50,7 @@ public class Dialog_Activity extends BaseTitleActivity {
 
     @Override
     protected int setToolbgcolor() {
-        return R.color.lightgrey;
+        return R.color.white;
     }
     @Override
     protected int getContentView() {

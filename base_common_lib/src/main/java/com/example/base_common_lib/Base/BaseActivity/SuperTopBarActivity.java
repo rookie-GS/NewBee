@@ -40,6 +40,15 @@ public class SuperTopBarActivity extends SuperTopbarBaseActivity {
             tvTitle.setText(title);
         }
     }
+    /**
+     * 设置中间title
+     * @param title title
+     */
+    protected void setTitle_color(int color){
+
+            tvTitle.setTextColor(getResources().getColor(color));
+
+    }
 
     public void setToolbar_bg_color(int color){
         toolbar.setBackgroundColor(getResources().getColor(color));

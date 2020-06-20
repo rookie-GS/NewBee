@@ -32,6 +32,10 @@ public abstract class BaseTitleActivity extends SuperInitActivity {
         }
         //设置title
         setTitleText(setTextTitle());
+        setToolbar_bg_color(setToolbgcolor());
+        settoorbar_vis(setToolbvis());
+        setTitle_color(setTitlecolor());
+
         //默认每个页面都显示左上角关闭页面图片
         setReplaceTopLeftButton(R.mipmap.my_back_b, null);
     }

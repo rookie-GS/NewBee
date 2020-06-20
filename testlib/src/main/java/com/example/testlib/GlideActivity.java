@@ -26,10 +26,13 @@ public class GlideActivity extends BaseTitleActivity {
     protected String setTextTitle() {
         return "图片库测试";
     }
-
+    @Override
+    protected int setTitlecolor() {
+        return R.color.black;
+    }
     @Override
     protected int setToolbgcolor() {
-        return R.color.blue;
+        return R.color.white;
     }
 
     @Override

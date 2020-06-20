@@ -20,7 +20,7 @@
             android:textSize="16sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/white" />
 
         <!--如果某个页面title中间不是文本,其他布局,使用ViewStub-->
         <ViewStub

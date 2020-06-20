@@ -28,10 +28,18 @@ public class DemoMainActivity extends BaseTitleActivity implements View.OnClickL
     }
 
     @Override
+    protected boolean setToolbvis() {
+        return true;
+    }
+
+    @Override
     protected String setTextTitle() {
         return "选择测试项目";
     }
-
+    @Override
+    protected int setTitlecolor() {
+        return R.color.black;
+    }
     @Override
     protected int setToolbgcolor() {
         return R.color.white;
@@ -64,6 +72,11 @@ public class DemoMainActivity extends BaseTitleActivity implements View.OnClickL
         bean_2.setName("图片测试");
         bean_2.setArouter(Arouter_path.TEST_IMAGE_PAGE);
         mList.add(bean_2);
+
+        Demo_list_bean bean_3 = new Demo_list_bean();
+        bean_3.setName("字符串拼接测试");
+        bean_3.setArouter(Arouter_path.TEST_STRING_PAGE);
+        mList.add(bean_3);
         demo_list_adapter.notifyDataSetChanged();
     }
 

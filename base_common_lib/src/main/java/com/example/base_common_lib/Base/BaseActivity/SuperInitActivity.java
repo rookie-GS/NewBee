@@ -78,11 +78,19 @@ public abstract class SuperInitActivity extends SuperOtherActivity {
         return "";
     }
     /**
-     * title_color
+     * title_bg_color
      *
      * @return title
      */
     protected int setToolbgcolor() {
+        return R.color.white;
+    }
+    /**
+     * title_color
+     *
+     * @return title
+     */
+    protected int setTitlecolor() {
         return R.color.white;
     }
     /**
