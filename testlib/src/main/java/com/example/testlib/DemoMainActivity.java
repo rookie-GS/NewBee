@@ -77,6 +77,11 @@ public class DemoMainActivity extends BaseTitleActivity implements View.OnClickL
         bean_3.setName("字符串拼接测试");
         bean_3.setArouter(Arouter_path.TEST_STRING_PAGE);
         mList.add(bean_3);
+
+        Demo_list_bean bean_4 = new Demo_list_bean();
+        bean_4.setName("网络请求测试");
+        bean_4.setArouter(Arouter_path.TEST_NET_PAGE);
+        mList.add(bean_4);
         demo_list_adapter.notifyDataSetChanged();
     }
 

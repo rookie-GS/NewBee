@@ -57,7 +57,12 @@ public class HomeActivity extends BaseMVPActivity<IHomeView, MainPreSenter> impl
 
     @Override
     protected int setToolbgcolor() {
-        return R.color.red;
+        return R.color.white;
+    }
+
+    @Override
+    protected int setTitlecolor() {
+        return R.color.black;
     }
 
     @Override

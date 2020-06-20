@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".String_Builder_Activity"></activity>
+        <activity android:name=".Net_Activity"></activity>
+        <activity android:name=".String_Builder_Activity" />
         <activity android:name=".GlideActivity" />
         <activity android:name=".Dialog_Activity" />
         <activity android:name=".DemoMainActivity" />

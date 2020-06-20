@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".Net_Activity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="30dp">
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center"
+             >
+             <Button
+                 android:id="@+id/bt_get_net"
+                 android:layout_width="150dp"
+                 android:layout_height="70dp"
+                 android:textSize="16sp"
+                 android:textColor="@color/black"
+                 android:text="请求网络"/>
+
+         </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    >
+                    <Button
+                        android:id="@+id/bt_clean_net"
+                        android:layout_width="150dp"
+                        android:layout_height="70dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:text="清除"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_net_body"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/gray"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:padding="20dp"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

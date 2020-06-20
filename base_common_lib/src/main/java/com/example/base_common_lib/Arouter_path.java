@@ -22,4 +22,6 @@ public class Arouter_path {
     public static final String TEST_IMAGE_PAGE = "/test/image";
     /**字符串拼接页*/
     public static final String TEST_STRING_PAGE = "/test/stringbuilder";
+    /**网络请求页*/
+    public static final String TEST_NET_PAGE = "/test/net";
 }

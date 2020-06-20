@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="160dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:gravity="center"
     android:background="@color/transparent"
     android:padding="10dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_item"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="3dp"
         app:cardBackgroundColor="@color/white"
-        app:contentPadding="8dp"
+        app:contentPadding="20dp"
         >
     <LinearLayout
         android:layout_width="match_parent"
