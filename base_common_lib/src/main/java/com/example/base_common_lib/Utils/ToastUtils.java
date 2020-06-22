@@ -295,7 +295,7 @@ public class ToastUtils {
         textView.setText(text);
         textView.setTextColor(Other_Utils.getContext().getResources().getColor(R.color.white));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-        textView.setPadding(Other_Utils.dip2px(12), Other_Utils.dip2px(6), Other_Utils.dip2px(12), Other_Utils.dip2px(6));
+        textView.setPadding(Other_Utils.dip2px(15), Other_Utils.dip2px(10), Other_Utils.dip2px(15), Other_Utils.dip2px(10));
         textView.setBackgroundResource(R.drawable.bg_bl99040404);
         return textView;
     }
