@@ -1,9 +1,6 @@
 package com.example.testlib;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -23,6 +21,7 @@ import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
 import com.example.base_common_lib.Utils.MiuiDeviceUtil;
 import com.example.base_common_lib.Utils.Other_Utils;
+import com.example.base_common_lib.Utils.ToastUtils;
 import com.example.base_common_lib.bean.Demo_list_bean;
 
 import java.util.ArrayList;
@@ -72,6 +71,12 @@ public class Dialog_Activity extends BaseTitleActivity {
                 if(router.equals("permision_dialog")){
                     show_permision_dialog();
                 }
+                if(router.equals("exit_dialog")){
+                    show_exit_dialog();
+                }
+                if(router.equals("login_dialog")){
+                    show_login_dialog();
+                }
             }
         });
     }
@@ -86,6 +91,14 @@ public class Dialog_Activity extends BaseTitleActivity {
         bean_02.setName("权限弹窗");
         bean_02.setArouter("permision_dialog");
         mlist.add(bean_02);
+        Demo_list_bean bean_03 = new Demo_list_bean();
+        bean_03.setName("退出弹窗");
+        bean_03.setArouter("exit_dialog");
+        mlist.add(bean_03);
+        Demo_list_bean bean_04 = new Demo_list_bean();
+        bean_04.setName("登录弹窗");
+        bean_04.setArouter("login_dialog");
+        mlist.add(bean_04);
         list_adapter.notifyDataSetChanged();
     }
 
@@ -112,7 +125,7 @@ public class Dialog_Activity extends BaseTitleActivity {
         });
 
     }
-    public void show_permision_dialog(){
+    public void show_permision_dialog() {
         View view = LayoutInflater.from(mContext).inflate(R.layout.quanxian_dialog, null);
         TextView tv_close = view.findViewById(R.id.tv_quanxain_close);
         TextView tv_goto_set = view.findViewById(R.id.tv_goto_set);
@@ -137,6 +150,72 @@ public class Dialog_Activity extends BaseTitleActivity {
                 openSettingPermission(mContext);
             }
         });
+    }
+    public void show_exit_dialog(){
+        View view = LayoutInflater.from(mContext).inflate(R.layout.exit_dialog, null);
+        TextView tv_exit = view.findViewById(R.id.tv_exit);
+        TextView tv_cancel = view.findViewById(R.id.tv_cancel);
+
+        mDialog = new Dialog(mContext, R.style.dialog_bg_style);
+        mDialog.setContentView(view);
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
+        tv_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShortToast("啊!我假装退出了");
+                mDialog.dismiss();
+            }
+        });
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.dismiss();
+
+            }
+        });
+    }
+    public void show_login_dialog(){
+        View view = LayoutInflater.from(mContext).inflate(R.layout.login_dialog, null);
+        TextView tv_phone_login = view.findViewById(R.id.tv_phone_login);
+        TextView tv_pwd_login  = view.findViewById(R.id.tv_pwd_login);
+        TextView tv_swap_phone_type = view.findViewById(R.id.tv_swap_phone_type);
+        TextView tv_swap_pwd_type = view.findViewById(R.id.tv_swap_pwd_type);
+        LinearLayout ll_pwd_type = view.findViewById(R.id.ll_pwd_type);
+        LinearLayout ll_phone_type = view.findViewById(R.id.ll_phone_type);
+        mDialog = new Dialog(mContext, R.style.dialog_bg_style);
+        mDialog.setContentView(view);
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
+        tv_phone_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShortToast("啊!我假装登录了");
+                mDialog.dismiss();
+            }
+        });
+        tv_pwd_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShortToast("啊!我假装登录了");
+                mDialog.dismiss();
+            }
+        });
+        tv_swap_phone_type.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    ll_pwd_type.setVisibility(View.GONE);
+                    ll_phone_type.setVisibility(View.VISIBLE);
+            }
+        });
+        tv_swap_pwd_type.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ll_pwd_type.setVisibility(View.VISIBLE);
+                ll_phone_type.setVisibility(View.GONE);
+            }
+        });
+
     }
     /**
      * 打开权限设置界面
