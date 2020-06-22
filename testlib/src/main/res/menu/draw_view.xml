@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_forWhy"
+            android:title="独行侠总冠军" />
+        <item android:id="@+id/nav_knowledge"
+            android:title="东契奇MVP" />
+        <item android:id="@+id/nav_expo"
+            android:title="东契奇FMVP" />
+        <item android:id="@+id/nav_reader"
+            android:title="东契奇一阵" />
+        <item android:id="@+id/nav_favorite"
+            android:title="东契奇一防" />
+
+    </group>
+
+    <item android:title="其他">
+        <menu>
+            <item android:id="@+id/nav_author"
+                android:title="作者：东契奇百年老粉"/>
+            <item android:id="@+id/nav_about"
+                android:title="版权说明" />
+        </menu>
+    </item>
+</menu>
