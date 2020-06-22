@@ -13,5 +13,5 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_vertical"
-        android:src="@mipmap/luka"/>
+      />
 </LinearLayout>

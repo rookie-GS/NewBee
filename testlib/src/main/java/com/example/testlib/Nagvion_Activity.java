@@ -57,6 +57,7 @@ public class Nagvion_Activity extends BaseTitleActivity {
         return R.layout.activity_nagvion;
     }
 
+    @SuppressLint("CheckResult")
     @Override
     protected void init(Bundle savedInstanceState) {
 
