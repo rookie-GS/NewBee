@@ -26,4 +26,6 @@ public class Arouter_path {
     public static final String TEST_NET_PAGE = "/test/net";
     /**侧拉抽屉页*/
     public static final String TEST_LEFT_PAGE = "/test/left_page";
+    /**防知乎底部栏页*/
+    public static final String TEST_ZH_PAGE = "/test/zh_bt";
 }

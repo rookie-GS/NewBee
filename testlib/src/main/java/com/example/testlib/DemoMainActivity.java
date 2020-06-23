@@ -88,6 +88,12 @@ public class DemoMainActivity extends BaseTitleActivity implements View.OnClickL
         bean_5.setArouter(Arouter_path.TEST_LEFT_PAGE);
         mList.add(bean_5);
         demo_list_adapter.notifyDataSetChanged();
+
+        Demo_list_bean bean_6 = new Demo_list_bean();
+        bean_6.setName("活动底部栏");
+        bean_6.setArouter(Arouter_path.TEST_ZH_PAGE);
+        mList.add(bean_6);
+        demo_list_adapter.notifyDataSetChanged();
     }
 
     @Override

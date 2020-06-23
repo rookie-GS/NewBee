@@ -18,11 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Dialog_Activity"></activity>
-        <activity android:name=".GlideActivity"></activity>
+        <activity android:name=".Dialog_Activity"/>
+        <activity android:name=".GlideActivity"/>
         <activity android:name=".String_Builder_Activity"/>
-        <activity android:name=".Nagvion_Activity"></activity>
+        <activity android:name=".Nagvion_Activity"/>
         <activity android:name=".Net_Activity"/>
+        <activity android:name=".ZH_tab_Activity"/>
+
     </application>
 
 </manifest>

@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.testlib">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,15 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ZH_tab_Activity"/>
         <activity android:name=".Nagvion_Activity" />
         <activity android:name=".Net_Activity" />
         <activity android:name=".String_Builder_Activity" />
         <activity android:name=".GlideActivity" />
-        <activity android:name=".Dialog_Activity"
+        <activity
+            android:name=".Dialog_Activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="user"
-            />
+            android:screenOrientation="user" />
         <activity android:name=".DemoMainActivity" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
