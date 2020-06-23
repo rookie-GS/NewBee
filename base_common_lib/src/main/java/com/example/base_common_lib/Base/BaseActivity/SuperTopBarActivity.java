@@ -31,6 +31,15 @@ public class SuperTopBarActivity extends SuperTopbarBaseActivity {
         }
     }
 
+    protected void set_right_text(String text){
+        if(!TextUtils.isEmpty(text)){
+            tv_right_text.setText(text);
+        }
+    }
+    protected void set_right_text_click(View.OnClickListener listener){
+        tv_right_text.setOnClickListener(listener);
+    }
+
     /**
      * 设置中间title
      * @param title title
@@ -42,12 +51,12 @@ public class SuperTopBarActivity extends SuperTopbarBaseActivity {
     }
     /**
      * 设置中间title
-     * @param title title
+     * @param
      */
     protected void setTitle_color(int color){
 
-            tvTitle.setTextColor(getResources().getColor(color));
-
+        tvTitle.setTextColor(getResources().getColor(color));
+        tv_right_text.setTextColor(getResources().getColor(color));
     }
 
     public void setToolbar_bg_color(int color){
@@ -82,6 +91,7 @@ public class SuperTopBarActivity extends SuperTopbarBaseActivity {
     @SuppressLint("NewApi")
     protected void setTopLeftButton(int iconResId, OnClickListener onClickListener) {
         toolbar.setNavigationIcon(iconResId);
+
         this.onClickListenerTopLeft = onClickListener;
     }
 
@@ -95,7 +105,7 @@ public class SuperTopBarActivity extends SuperTopbarBaseActivity {
      * @param menuStr         内容
      * @param onClickListener 点击监听
      */
-    protected void setTopRightButton(String menuStr, OnClickListener onClickListener) {
+    public void setTopRightButton(String menuStr, OnClickListener onClickListener) {
         this.onClickListenerTopRight = onClickListener;
         this.menuStr = menuStr;
     }

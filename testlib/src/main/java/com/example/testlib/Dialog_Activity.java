@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -19,6 +20,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
+import com.example.base_common_lib.Utils.LogUtils;
 import com.example.base_common_lib.Utils.MiuiDeviceUtil;
 import com.example.base_common_lib.Utils.Other_Utils;
 import com.example.base_common_lib.Utils.ToastUtils;
@@ -46,7 +48,32 @@ public class Dialog_Activity extends BaseTitleActivity {
     protected boolean setToolbvis() {
         return true;
     }
+    @Override
+    protected String setRight_text() {
+        return "旋转";
+    }
 
+    @Override
+    protected View.OnClickListener setRightlisener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //如果是竖排,则改为横排
+
+                if(getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+                } else if(getRequestedOrientation() ==ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+//如果是横排,则改为竖排
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                }else if(getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_USER){
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                }
+                ToastUtils.showShortToast("点击了切换屏幕");
+            }
+        };
+    }
     @Override
     protected int setToolbgcolor() {
         return R.color.white;
@@ -176,6 +203,7 @@ public class Dialog_Activity extends BaseTitleActivity {
         });
     }
     public void show_login_dialog(){
+        LogUtils.e("屏幕宽度："+Other_Utils.getScreenWidth()+"  屏幕高度："+Other_Utils.getScreenHeight());
         View view = LayoutInflater.from(mContext).inflate(R.layout.login_dialog, null);
         TextView tv_phone_login = view.findViewById(R.id.tv_phone_login);
         TextView tv_pwd_login  = view.findViewById(R.id.tv_pwd_login);

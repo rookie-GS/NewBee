@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import androidx.annotation.LayoutRes;
 
 import com.example.base_common_lib.R;
+import com.example.base_common_lib.Utils.ToastUtils;
 
 
 /**
@@ -20,7 +21,7 @@ import com.example.base_common_lib.R;
  * @Date Created by 2020/6/11 13:49
  * 
  */
-public abstract class SuperInitActivity extends SuperOtherActivity {
+public abstract class SuperInitActivity extends SuperTopBarActivity {
 
     @Override
     protected void setContentViews(Bundle savedInstanceState) {
@@ -100,6 +101,23 @@ public abstract class SuperInitActivity extends SuperOtherActivity {
      */
     protected boolean setToolbvis() {
         return false;
+    }
+    /**
+     * title_color
+     *
+     * @return title
+     */
+    protected String setRight_text() {
+        return "";
+    }
+
+    protected View.OnClickListener setRightlisener(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showShortToast("暂无信息");
+            }
+        };
     }
     /**
      * 初始化

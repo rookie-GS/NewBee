@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.testlib">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,11 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Nagvion_Activity"></activity>
+        <activity android:name=".Nagvion_Activity" />
         <activity android:name=".Net_Activity" />
         <activity android:name=".String_Builder_Activity" />
         <activity android:name=".GlideActivity" />
-        <activity android:name=".Dialog_Activity" />
+        <activity android:name=".Dialog_Activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="user"
+            />
         <activity android:name=".DemoMainActivity" />
     </application>
 

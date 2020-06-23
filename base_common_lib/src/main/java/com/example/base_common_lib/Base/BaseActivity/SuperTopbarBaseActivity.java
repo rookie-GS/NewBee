@@ -37,7 +37,7 @@ public class SuperTopbarBaseActivity extends SuperActivity {
     /**当前页面的父布局*/
     protected FrameLayout viewContent;
     /**当前页面标题*/
-    protected TextView tvTitle;
+    protected TextView tvTitle,tv_right_text;
     /**下滑线*/
     protected View superViewLin;
     /**title覆盖叠加*/
@@ -47,13 +47,7 @@ public class SuperTopbarBaseActivity extends SuperActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        if (!isSuperFragmentLayout()) {
-            setContentView(R.layout.activity_base_top_bar);
-        }else {
-            //使用父布局为 FrameLayout的xml
-            setContentView(R.layout.activity_base_top_bar_frlayout);
-        }
-
+        setContentView(R.layout.activity_base_top_bar);
         lifecycleSubject.onNext(ActivityLifeCycleEvent.CREATE);
         //loadViewStub
         initViewStub();
@@ -77,15 +71,11 @@ public class SuperTopbarBaseActivity extends SuperActivity {
         toolbar =  findViewById(R.id.toolbar);
         viewContent =  findViewById(R.id.viewContent);
         tvTitle =  findViewById(R.id.tvTitle);
+        tv_right_text = findViewById(R.id.tv_right_text);
         superViewLin = findViewById(R.id.super_view_lin);
         title_view_stub = findViewById(R.id.title_view_stub);
         if (toolbar != null) {
-            if (!isSuperFragmentLayout()) {
-                toolbar.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Other_Utils.dip2px(45)));
-            }else {
-                superSwipeRefresh = findViewById(R.id.swipe_refresh);
-                superViewLin.setVisibility(View.GONE);
-            }
+            toolbar.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Other_Utils.dip2px(45)));
         }
     }
 

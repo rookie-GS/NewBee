@@ -35,7 +35,8 @@ public abstract class BaseTitleActivity extends SuperInitActivity {
         setToolbar_bg_color(setToolbgcolor());
         settoorbar_vis(setToolbvis());
         setTitle_color(setTitlecolor());
-
+        set_right_text(setRight_text());
+        set_right_text_click(setRightlisener());
         //默认每个页面都显示左上角关闭页面图片
         setReplaceTopLeftButton(R.mipmap.my_back_b, null);
     }
