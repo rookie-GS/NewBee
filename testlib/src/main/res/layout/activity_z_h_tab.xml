@@ -12,6 +12,38 @@
         android:layout_height="match_parent">
     </androidx.recyclerview.widget.RecyclerView>
     <include layout="@layout/layout_toolbar"/>
+    <ImageView
+        android:id="@+id/iv_one"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="top|left"
+        android:layout_marginTop="100dp"
+        app:layout_behavior="@string/fab_scale_behavior"
+        android:layout_marginLeft="25dp"/>
+    <ImageView
+        android:id="@+id/iv_two"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="top|right"
+        android:layout_marginTop="100dp"
+        app:layout_behavior="@string/fab_scale_behavior"
+        android:layout_marginRight="25dp"/>
+    <ImageView
+        android:id="@+id/iv_three"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="75dp"
+        app:layout_behavior="@string/fab_vertical_behavior"
+        android:layout_marginLeft="25dp"/>
+    <ImageView
+        android:id="@+id/iv_four"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="75dp"
+        app:layout_behavior="@string/fab_vertical_behavior"
+        android:layout_marginRight="25dp"/>
     <LinearLayout
         android:id="@+id/layout_bottom"
         android:layout_width="match_parent"
@@ -20,7 +52,8 @@
         android:background="@color/blue"
         android:elevation="5dp"
         android:orientation="horizontal"
-        app:layout_behavior="@string/bottom_view_behavior">
+        app:layout_behavior="@string/bottom_view_behavior"
+        >
 
         <TextView
             android:layout_width="match_parent"
@@ -31,6 +64,5 @@
             android:textColor="@android:color/white"/>
 
     </LinearLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

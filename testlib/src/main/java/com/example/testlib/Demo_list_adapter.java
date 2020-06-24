@@ -1,6 +1,7 @@
 package com.example.testlib;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.didichuxing.doraemonkit.kit.viewcheck.LayoutBorderView;
 import com.example.base_common_lib.Utils.Other_Utils;
+import com.example.base_common_lib.Utils.ToastUtils;
 import com.example.base_common_lib.bean.Demo_list_bean;
 
 import java.util.ArrayList;
@@ -40,7 +42,11 @@ public class Demo_list_adapter extends RecyclerView.Adapter<Demo_list_adapter.Vi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mItemClicklisener.ItemOnclick(mList.get(position).getArouter());
+                if(TextUtils.isEmpty(mList.get(position).getArouter())){
+                    ToastUtils.showShortToast("假装被点击了");
+                }else {
+                    mItemClicklisener.ItemOnclick(mList.get(position).getArouter());
+                }
             }
         });
     }

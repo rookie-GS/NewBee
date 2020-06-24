@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">homelib</string>
+    <string name="title_view_behavior">com.lauzy.freedom.lbehaviorlib.behavior.TitleBehavior</string>
+    <string name="fab_scale_behavior">com.lauzy.freedom.lbehaviorlib.behavior.FabScaleBehavior</string>
+    <string name="fab_vertical_behavior">com.lauzy.freedom.lbehaviorlib.behavior.FabVerticalBehavior</string>
+    <string name="bottom_view_behavior">com.lauzy.freedom.lbehaviorlib.behavior.BottomBehavior</string>
 </resources>

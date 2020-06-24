@@ -39,7 +39,6 @@ public class GlideActivity extends BaseTitleActivity {
     protected int getContentView() {
         return R.layout.activity_glide;
     }
-
     @Override
     protected void init(Bundle savedInstanceState) {
         iv_pic_one = findViewById(R.id.iv_pic_one);
