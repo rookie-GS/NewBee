@@ -53,5 +53,6 @@ static def allModuleDependencies(DependencyHandler dependencyHandler) {
     dependencyHandler.implementation 'com.android.support:design:29.1.1'
     //adapter
     dependencyHandler.implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    dependencyHandler.implementation 'com.zhihu.android:matisse:0.5.3-beta3'
 }
 ext.allModuleDependencies = this.&allModuleDependencies

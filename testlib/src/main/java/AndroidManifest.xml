@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.testlib">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ZH_tab_Activity"/>
+        <activity android:name=".Pic_selector_Activity"></activity>
+        <activity android:name=".ZH_tab_Activity" />
         <activity android:name=".Nagvion_Activity" />
         <activity android:name=".Net_Activity" />
         <activity android:name=".String_Builder_Activity" />
@@ -20,7 +26,5 @@
             android:screenOrientation="user" />
         <activity android:name=".DemoMainActivity" />
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
