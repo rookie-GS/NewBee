@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseActivity;
+import com.example.base_common_lib.Base.CommonAdapter;
 import com.example.base_common_lib.Constant;
 import com.example.base_common_lib.Utils.GlideUtils;
 import com.example.base_common_lib.bean.Demo_list_bean;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 @Route(path = Arouter_path.TEST_ZH_PAGE)
 public class ZH_tab_Activity extends BaseActivity {
     RecyclerView rv_demo;
-    Demo_list_adapter adapter;
+    CommonAdapter adapter;
     ArrayList<Demo_list_bean> list_beans = new ArrayList<>();
     ImageView iv_one,iv_two,iv_three,iv_four;
     @Override
@@ -39,7 +40,7 @@ public class ZH_tab_Activity extends BaseActivity {
         iv_four = findViewById(R.id.iv_four);
         rv_demo = findViewById(R.id.rv_demo);
         rv_demo.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new Demo_list_adapter(list_beans);
+        adapter = new CommonAdapter(list_beans);
 
         rv_demo.setAdapter(adapter);
 

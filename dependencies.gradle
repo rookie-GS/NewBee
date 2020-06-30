@@ -49,5 +49,9 @@ static def allModuleDependencies(DependencyHandler dependencyHandler) {
     dependencyHandler.implementation 'jp.wasabeef:glide-transformations:4.1.0'
     //知乎底部栏
     dependencyHandler.implementation 'com.github.Lauzy:LBehavior:1.0.3'
+    //design包
+    dependencyHandler.implementation 'com.android.support:design:29.1.1'
+    //adapter
+    dependencyHandler.implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
 }
 ext.allModuleDependencies = this.&allModuleDependencies

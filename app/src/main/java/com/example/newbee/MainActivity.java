@@ -1,33 +1,20 @@
 package com.example.newbee;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseActivity;
-import com.example.base_common_lib.Utils.LogUtils;
-import com.example.base_common_lib.Utils.MiuiDeviceUtil;
-import com.example.base_common_lib.Utils.Other_Utils;
+import com.example.base_common_lib.Base.CommonAdapter;
 import com.example.base_common_lib.Utils.ToastUtils;
 import com.example.base_common_lib.bean.Demo_list_bean;
-import com.example.testlib.Demo_list_adapter;
 
 import java.util.ArrayList;
 
@@ -36,7 +23,7 @@ public class MainActivity extends BaseActivity {
     public static final long FIN_TIME = 3000;
     public long clickTime = 0;
     RecyclerView rv_main;
-    Demo_list_adapter adapter;
+    CommonAdapter  commonAdapter;
     ArrayList<Demo_list_bean> mList = new ArrayList<>();
     @Override
     protected int getContentView() {
@@ -47,13 +34,12 @@ public class MainActivity extends BaseActivity {
     protected void init(Bundle savedInstanceState) {
         rv_main = findViewById(R.id.rv_main);
         rv_main.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new Demo_list_adapter(mList);
-        rv_main.setAdapter(adapter);
-        adapter.setItemClick(new Demo_list_adapter.ItemClicklisener() {
+        commonAdapter = new CommonAdapter(mList);
+        rv_main.setAdapter(commonAdapter);
+        commonAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void ItemOnclick(String router) {
-                ARouter.getInstance().build(router).navigation();
-
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                ARouter.getInstance().build(mList.get(position).getArouter()).navigation();
             }
         });
     }
@@ -69,7 +55,7 @@ public class MainActivity extends BaseActivity {
         bean1.setName("集成测试模块");
         bean1.setArouter(Arouter_path.TEST_HOME_PAGE);
         mList.add(bean1);
-        adapter.notifyDataSetChanged();
+        commonAdapter.notifyDataSetChanged();
     }
     @Override
     public void onBackPressed() {

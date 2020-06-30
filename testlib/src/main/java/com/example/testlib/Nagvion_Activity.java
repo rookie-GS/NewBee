@@ -39,7 +39,6 @@ public class Nagvion_Activity extends BaseTitleActivity {
         //toolbar 显示与否
         return false;
     }
-
     @Override
     protected String setTextTitle() {
         return "侧拉界面测试";

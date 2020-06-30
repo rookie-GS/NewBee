@@ -17,7 +17,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         />
-    
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -28,7 +28,7 @@
         android:theme="@style/NavigationDrawerStyle"
         app:menu="@menu/draw_view">
 
-
     </com.google.android.material.navigation.NavigationView>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -1,4 +1,5 @@
 package com.example.testlib;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
@@ -18,8 +19,11 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
+import com.example.base_common_lib.Base.CommonAdapter;
 import com.example.base_common_lib.Utils.LogUtils;
 import com.example.base_common_lib.Utils.MiuiDeviceUtil;
 import com.example.base_common_lib.Utils.Other_Utils;
@@ -32,7 +36,7 @@ import java.util.ArrayList;
 @Route( path = Arouter_path.TEST_DIALOG_PAGE)
 public class Dialog_Activity extends BaseTitleActivity {
     RecyclerView rv_dialog_list;
-    Demo_list_adapter list_adapter;
+    CommonAdapter list_adapter;
     ArrayList<Demo_list_bean> mlist = new ArrayList<>();
     Dialog mDialog;
 
@@ -87,25 +91,27 @@ public class Dialog_Activity extends BaseTitleActivity {
     protected void init(Bundle savedInstanceState) {
         rv_dialog_list = findViewById(R.id.rv_dialog_list);
         rv_dialog_list.setLayoutManager(new LinearLayoutManager(this));
-        list_adapter = new Demo_list_adapter(mlist);
+        list_adapter = new CommonAdapter(mlist);
         rv_dialog_list.setAdapter(list_adapter);
-        list_adapter.setItemClick(new Demo_list_adapter.ItemClicklisener() {
+        list_adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void ItemOnclick(String router) {
-                if(router.equals("ad_dialog")){
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                if(mlist.get(position).getArouter().equals("ad_dialog")){
                     show_ad_dialog();
                 }
-                if(router.equals("permision_dialog")){
+                if(mlist.get(position).getArouter().equals("permision_dialog")){
                     show_permision_dialog();
                 }
-                if(router.equals("exit_dialog")){
+                if(mlist.get(position).getArouter().equals("exit_dialog")){
                     show_exit_dialog();
                 }
-                if(router.equals("login_dialog")){
+                if(mlist.get(position).getArouter().equals("login_dialog")){
                     show_login_dialog();
                 }
             }
         });
+
+
     }
 
     @Override
