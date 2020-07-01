@@ -1,5 +1,5 @@
 package com.example.testlib;
-
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
@@ -11,18 +11,22 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
+import com.example.base_common_lib.Base.Pic_Adapter;
 import com.example.base_common_lib.Constant;
+import com.example.base_common_lib.Utils.GlideUtils;
 import com.example.base_common_lib.Utils.LogUtils;
 import com.example.base_common_lib.Utils.ToastUtils;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,8 +34,10 @@ import java.util.List;
 public class Pic_selector_Activity extends BaseTitleActivity {
     private RecyclerView mRecyclerView;
     private PopupWindow pop;
-    private TextView tv_select,tv_path;
+    private TextView tv_select;
 
+    Pic_Adapter adapter;
+    ArrayList<Uri> mList = new ArrayList<>();
     @Override
     protected String setTextTitle() {
         return "图片选择器测试";
@@ -60,7 +66,10 @@ public class Pic_selector_Activity extends BaseTitleActivity {
     protected void init(Bundle savedInstanceState) {
         mRecyclerView = findViewById(R.id.recycler);
         tv_select = findViewById(R.id.tv_select);
-        tv_path = findViewById(R.id.tv_path);
+        mRecyclerView = findViewById(R.id.recycler);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this,3,GridLayoutManager.VERTICAL,false));
+        adapter = new Pic_Adapter(mList);
+        mRecyclerView.setAdapter(adapter);
         tv_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,8 +151,8 @@ public class Pic_selector_Activity extends BaseTitleActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constant.REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
-            List<Uri>  mSelected = Matisse.obtainResult(data);
-            LogUtils.e("图片路径:"+mSelected.toString());
+            mList.addAll(Matisse.obtainResult(data));
+            adapter.notifyDataSetChanged();
         }
     }
 }

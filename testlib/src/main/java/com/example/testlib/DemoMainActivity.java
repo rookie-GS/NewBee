@@ -95,11 +95,11 @@ public class DemoMainActivity extends BaseTitleActivity implements View.OnClickL
         demo_list_adapter.notifyDataSetChanged();
 
         Demo_list_bean bean_6 = new Demo_list_bean();
-        bean_6.setName("活动底部栏");
+        bean_6.setName("活动底部栏测试");
         bean_6.setArouter(Arouter_path.TEST_ZH_PAGE);
         mList.add(bean_6);
         Demo_list_bean bean_7 = new Demo_list_bean();
-        bean_7.setName("图片选择器");
+        bean_7.setName("图片选择器测试");
         bean_7.setArouter(Arouter_path.TEST_PIC_PAGE);
         mList.add(bean_7);
         demo_list_adapter.notifyDataSetChanged();

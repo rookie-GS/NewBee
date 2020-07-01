@@ -2,6 +2,7 @@ package com.example.base_common_lib.Utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.net.Uri;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -36,6 +37,17 @@ public class GlideUtils {
     }
     @SuppressLint("CheckResult")
     public static void load_image(ImageView iv,int url){
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.placeholder(BG_DEF);
+        requestOptions.placeholder(BG_DEF);
+
+        Glide.with(mContext)
+                .load(url)
+                .apply(requestOptions)
+                .into(iv);
+    }
+    @SuppressLint("CheckResult")
+    public static void load_image(ImageView iv, Uri url){
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(BG_DEF);
         requestOptions.placeholder(BG_DEF);
