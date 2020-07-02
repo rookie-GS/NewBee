@@ -9,6 +9,7 @@ import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -108,6 +109,12 @@ public class Dialog_Activity extends BaseTitleActivity {
                 if(mlist.get(position).getArouter().equals("login_dialog")){
                     show_login_dialog();
                 }
+                if(mlist.get(position).getArouter().equals("bottom_dialog")){
+                    show_bottom_dialog();
+                }
+                if(mlist.get(position).getArouter().equals("right_dialog")){
+                    show_right_dialog();
+                }
             }
         });
 
@@ -132,6 +139,15 @@ public class Dialog_Activity extends BaseTitleActivity {
         bean_04.setName("登录弹窗");
         bean_04.setArouter("login_dialog");
         mlist.add(bean_04);
+
+        Demo_list_bean bean_05 = new Demo_list_bean();
+        bean_05.setName("底部弹窗");
+        bean_05.setArouter("bottom_dialog");
+        mlist.add(bean_05);
+        Demo_list_bean bean_06 = new Demo_list_bean();
+        bean_06.setName("侧边弹窗");
+        bean_06.setArouter("right_dialog");
+        mlist.add(bean_06);
         list_adapter.notifyDataSetChanged();
     }
 
@@ -156,7 +172,6 @@ public class Dialog_Activity extends BaseTitleActivity {
                 mDialog.dismiss();
             }
         });
-
     }
     public void show_permision_dialog() {
         View view = LayoutInflater.from(mContext).inflate(R.layout.quanxian_dialog, null);
@@ -249,6 +264,32 @@ public class Dialog_Activity extends BaseTitleActivity {
                 ll_phone_type.setVisibility(View.GONE);
             }
         });
+
+    }
+    public void show_bottom_dialog(){
+        mDialog = new Dialog(this,R.style.ActionSheetDialogStyle);
+        View inflate = LayoutInflater.from(this).inflate(R.layout.bottom_dialog, null);
+        mDialog.setContentView(inflate);
+        Window dialogWindow = mDialog.getWindow();
+        dialogWindow.setGravity( Gravity.BOTTOM);
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        dialogWindow.setAttributes(lp);
+        mDialog.show();
+
+    }
+    public void show_right_dialog(){
+        mDialog = new Dialog(this,R.style.ActionrightDialogStyle);
+        View inflate = LayoutInflater.from(this).inflate(R.layout.right_dialog, null);
+        mDialog.setContentView(inflate);
+        Window dialogWindow = mDialog.getWindow();
+        dialogWindow.setGravity( Gravity.RIGHT);
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dialogWindow.setAttributes(lp);
+        mDialog.show();
 
     }
     /**

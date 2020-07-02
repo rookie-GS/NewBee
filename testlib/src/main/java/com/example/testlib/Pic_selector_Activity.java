@@ -1,4 +1,5 @@
 package com.example.testlib;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,13 +16,18 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
 import com.example.base_common_lib.Base.Pic_Adapter;
 import com.example.base_common_lib.Constant;
 import com.example.base_common_lib.Utils.GlideUtils;
 import com.example.base_common_lib.Utils.LogUtils;
+import com.example.base_common_lib.Utils.Other_Utils;
 import com.example.base_common_lib.Utils.ToastUtils;
+import com.example.base_common_lib.ui.HomeDecoration;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
@@ -69,14 +75,26 @@ public class Pic_selector_Activity extends BaseTitleActivity {
         mRecyclerView = findViewById(R.id.recycler);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this,3,GridLayoutManager.VERTICAL,false));
         adapter = new Pic_Adapter(mList);
+        int dividerWidth = Other_Utils.dip2px(12) / 2;
+
+        mRecyclerView.addItemDecoration(new HomeDecoration(this
+                , dividerWidth
+                , R.color.lightgrey));
         mRecyclerView.setAdapter(adapter);
+
         tv_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPop();
             }
         });
-
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                mList.remove(position);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
     @Override
     protected void initData() {
