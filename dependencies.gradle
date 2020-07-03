@@ -53,6 +53,10 @@ static def allModuleDependencies(DependencyHandler dependencyHandler) {
     dependencyHandler.implementation 'com.android.support:design:29.1.1'
     //adapter
     dependencyHandler.implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    //知乎选择图片框架
     dependencyHandler.implementation 'com.zhihu.android:matisse:0.5.3-beta3'
+    //二维码扫描
+    dependencyHandler.implementation 'com.mylhyl:zxingscanner:2.1.6'
+
 }
 ext.allModuleDependencies = this.&allModuleDependencies

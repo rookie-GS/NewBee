@@ -26,6 +26,9 @@
         <activity android:name=".Nagvion_Activity"/>
         <activity android:name=".Net_Activity"/>
         <activity android:name=".ZH_tab_Activity"/>
+        <activity android:name=".QRActivity"/>
+        <activity android:name=".Pic_selector_Activity" />
+        <activity android:name=".ScanActivity"/>
 
     </application>
 

@@ -30,4 +30,8 @@ public class Arouter_path {
     public static final String TEST_ZH_PAGE = "/test/zh_bt";
     /**图片选择器*/
     public static final String TEST_PIC_PAGE = "/test/pic_selector";
+    /**二维码扫描页*/
+    public static final String TEST_QR_PAGE = "/test/qr_enter";
+    /**相机扫描页*/
+    public static final String TEST_SCAN_PAGE = "/test/scan";
 }

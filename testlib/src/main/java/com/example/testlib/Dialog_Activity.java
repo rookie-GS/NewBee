@@ -57,7 +57,6 @@ public class Dialog_Activity extends BaseTitleActivity {
     protected String setRight_text() {
         return "旋转";
     }
-
     @Override
     protected View.OnClickListener setRightlisener() {
         return new View.OnClickListener() {
@@ -87,7 +86,6 @@ public class Dialog_Activity extends BaseTitleActivity {
     protected int getContentView() {
         return R.layout.activity_dialog;
     }
-
     @Override
     protected void init(Bundle savedInstanceState) {
         rv_dialog_list = findViewById(R.id.rv_dialog_list);
@@ -120,7 +118,6 @@ public class Dialog_Activity extends BaseTitleActivity {
 
 
     }
-
     @Override
     protected void initData() {
         Demo_list_bean bean = new Demo_list_bean();
@@ -150,7 +147,6 @@ public class Dialog_Activity extends BaseTitleActivity {
         mlist.add(bean_06);
         list_adapter.notifyDataSetChanged();
     }
-
     public void show_ad_dialog(){
         View view = LayoutInflater.from(mContext).inflate(R.layout.huodong_dialog, null);
         ImageView iv_huodong = view.findViewById(R.id.iv_huodong);
