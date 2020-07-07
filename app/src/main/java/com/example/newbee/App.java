@@ -13,6 +13,7 @@ public class App extends MultiDexApplication {
     public static final boolean isDebug = BuildConfig.DEBUG;
     @Override
     public void onCreate() {
+
         super.onCreate();
         if(isDebug){
             ARouter.openLog();
@@ -28,4 +29,7 @@ public class App extends MultiDexApplication {
         Hawk.init(Other_Utils.getContext()).build();
 
     }
+
+
+
 }

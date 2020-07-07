@@ -1,29 +1,20 @@
 package com.example.testlib;
-
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
-import com.example.base_common_lib.Constant;
 import com.example.base_common_lib.Utils.GlideUtils;
 import com.example.base_common_lib.Utils.ToastUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.zhihu.matisse.Matisse;
-import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.engine.impl.GlideEngine;
+
 
 import io.reactivex.functions.Consumer;
 
@@ -63,12 +54,7 @@ public class QRActivity extends BaseTitleActivity {
         tv_result = findViewById(R.id.tv_result);
         iv_pic = findViewById(R.id.iv_pic);
         bt_scan = findViewById(R.id.bt_scan);
-        bt_scan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rxPermissionTest();
-            }
-        });
+        bt_scan.setOnClickListener(v -> rxPermissionTest());
     }
 
     @Override
@@ -80,7 +66,7 @@ public class QRActivity extends BaseTitleActivity {
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions.request(Manifest.permission.CAMERA).subscribe(new Consumer<Boolean>() {
             @Override
-            public void accept(Boolean granted) throws Exception {
+            public void accept(Boolean granted)     {
                 if (granted) {
                     // 打开相机
 //                    ToastUtils.showShortToast("啊，假装打开了相机");
@@ -98,10 +84,14 @@ public class QRActivity extends BaseTitleActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 99&&resultCode == 98){
             ToastUtils.showShortToast("扫描成功");
-            Bundle bundle = data.getExtras();
-            String str = bundle.getString("result");
-            tv_result.setText(str);
-            GlideUtils.load_image(iv_pic,str);
+            Bundle bundle ;
+            if (data != null) {
+                bundle = data.getExtras();
+                String str = bundle != null ? bundle.getString("result") : "";
+                tv_result.setText(str);
+                GlideUtils.load_image(iv_pic,str);
+            }
+
         }
     }
 }

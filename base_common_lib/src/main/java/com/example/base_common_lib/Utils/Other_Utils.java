@@ -3,6 +3,8 @@ package com.example.base_common_lib.Utils;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.PendingIntent;
+import android.app.usage.UsageStats;
+import android.app.usage.UsageStatsManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +18,7 @@ import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -30,9 +33,14 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+
+import static android.app.usage.UsageStatsManager.INTERVAL_DAILY;
+import static android.content.Context.USAGE_STATS_SERVICE;
 
 /**
  * @Author G_JS
@@ -526,7 +534,27 @@ public class Other_Utils {
         }
         return false;
     }
-
+    //获取所有应用的信息
+    @SuppressLint("NewApi")
+    private void getForegroundApp() {
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(new Date());
+        long endt = calendar.getTimeInMillis();//结束时间
+        long statt = calendar.getTimeInMillis()-86400000;//开始时间
+        UsageStatsManager usageStatsManager=(UsageStatsManager) getContext().getSystemService(USAGE_STATS_SERVICE);
+        //获取一天内的信息
+        List<UsageStats> queryUsageStats = usageStatsManager.queryUsageStats(INTERVAL_DAILY,statt,endt);
+        if(queryUsageStats.size()==0){
+            getContext().startActivity(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS));
+        }else {
+            for (int i = 0; i <queryUsageStats.size() ; i++) {
+                if(queryUsageStats.get(i).getPackageName().equals("com.example.newbee")){
+                    LogUtils.e("使用时长测试：包名："+queryUsageStats.get(i).getPackageName()+"   使用时长："+ queryUsageStats.get(i).getTotalTimeVisible());
+                    break;
+                }
+            }
+        }
+    }
 
 
 }
