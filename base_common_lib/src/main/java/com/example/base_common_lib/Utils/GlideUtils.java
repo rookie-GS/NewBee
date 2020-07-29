@@ -1,18 +1,14 @@
 package com.example.base_common_lib.Utils;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.widget.ImageView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.base_common_lib.Constant;
 import com.example.base_common_lib.R;
-
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
@@ -28,7 +24,6 @@ public class GlideUtils {
     public static void load_image(ImageView iv,String url){
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(BG_DEF);
-        requestOptions.placeholder(BG_DEF);
 
         Glide.with(mContext)
                 .load(url)
@@ -38,7 +33,6 @@ public class GlideUtils {
     @SuppressLint("CheckResult")
     public static void load_image(ImageView iv,int url){
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(BG_DEF);
         requestOptions.placeholder(BG_DEF);
 
         Glide.with(mContext)
@@ -50,8 +44,6 @@ public class GlideUtils {
     public static void load_image(ImageView iv, Uri url){
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(BG_DEF);
-        requestOptions.placeholder(BG_DEF);
-
         Glide.with(mContext)
                 .load(url)
                 .apply(requestOptions)
@@ -65,7 +57,6 @@ public class GlideUtils {
     public static void load_circle_image(ImageView iv,String url){
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(BG_DEF);
-        requestOptions.placeholder(BG_DEF);
         requestOptions.transform(new CircleCrop());
         Glide.with(mContext)
                 .load(url)
@@ -75,7 +66,6 @@ public class GlideUtils {
     @SuppressLint("CheckResult")
     public static void load_circle_image(ImageView iv,int url){
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(BG_DEF);
         requestOptions.placeholder(BG_DEF);
         requestOptions.transform(new CircleCrop());
         Glide.with(mContext)
@@ -91,7 +81,6 @@ public class GlideUtils {
     public static void load_radius_corner_image(ImageView iv,String url,int radius){
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(BG_DEF);
-        requestOptions.placeholder(BG_DEF);
         requestOptions.transform(new RoundedCorners(radius));
         Glide.with(mContext)
                 .load(url)
@@ -101,7 +90,6 @@ public class GlideUtils {
     @SuppressLint("CheckResult")
     public static void load_radius_corner_image(ImageView iv,int url,int radius){
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(BG_DEF);
         requestOptions.placeholder(BG_DEF);
         requestOptions.transform(new RoundedCorners(radius));
         Glide.with(mContext)
@@ -117,7 +105,6 @@ public class GlideUtils {
     public static void load_blur_image(ImageView iv, String url, int radius){
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(BG_DEF);
-        requestOptions.placeholder(BG_DEF);
         requestOptions.transform(new BlurTransformation(radius, 2));
         Glide.with(mContext)
                 .load(url)
@@ -127,7 +114,6 @@ public class GlideUtils {
     @SuppressLint("CheckResult")
     public static void load_blur_image(ImageView iv,int url,int radius){
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(BG_DEF);
         requestOptions.placeholder(BG_DEF);
         requestOptions.transform(new BlurTransformation(radius, 2));
         Glide.with(mContext)
@@ -142,7 +128,6 @@ public class GlideUtils {
     public static void load_dration_image(ImageView iv,String url ,int time){
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(BG_DEF);
-        requestOptions.placeholder(BG_DEF);
         Glide.with(mContext)
                 .load(url)
                 .apply(requestOptions)
@@ -153,7 +138,6 @@ public class GlideUtils {
     @SuppressLint("CheckResult")
     public static void load_dration_image(ImageView iv,int url ,int time){
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(BG_DEF);
         requestOptions.placeholder(BG_DEF);
         Glide.with(mContext)
                 .load(url)
