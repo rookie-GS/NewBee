@@ -106,6 +106,14 @@ public class DemoMainActivity extends BaseTitleActivity implements View.OnClickL
         bean_8.setName("二维码测试");
         bean_8.setArouter(Arouter_path.TEST_QR_PAGE);
         mList.add(bean_8);
+        Demo_list_bean bean_9 = new Demo_list_bean();
+        bean_9.setName("自定义view测试");
+        bean_9.setArouter(Arouter_path.TEST_CUSTOM_VIEW_PAGE);
+        mList.add(bean_9);
+        Demo_list_bean bean_10 = new Demo_list_bean();
+        bean_10.setName("自定义指示器测试");
+        bean_10.setArouter(Arouter_path.TEST_CUSTOM_INDECOTOR_PAGE);
+        mList.add(bean_10);
         demo_list_adapter.notifyDataSetChanged();
     }
 

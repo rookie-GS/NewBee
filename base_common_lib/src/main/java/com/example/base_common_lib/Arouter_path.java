@@ -34,4 +34,8 @@ public class Arouter_path {
     public static final String TEST_QR_PAGE = "/test/qr_enter";
     /**相机扫描页*/
     public static final String TEST_SCAN_PAGE = "/test/scan";
+    /**自定义View页*/
+    public static final String TEST_CUSTOM_VIEW_PAGE = "/test/customview";
+    /**自定义指示器页*/
+    public static final String TEST_CUSTOM_INDECOTOR_PAGE = "/test/indecotor";
 }

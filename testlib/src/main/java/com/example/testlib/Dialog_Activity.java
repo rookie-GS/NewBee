@@ -4,10 +4,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.provider.Settings;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
@@ -32,6 +35,8 @@ import com.example.base_common_lib.Utils.ToastUtils;
 import com.example.base_common_lib.bean.Demo_list_bean;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 
 @Route( path = Arouter_path.TEST_DIALOG_PAGE)
@@ -41,6 +46,7 @@ public class Dialog_Activity extends BaseTitleActivity {
     ArrayList<Demo_list_bean> mlist = new ArrayList<>();
     Dialog mDialog;
 
+    Queue<Integer> dialog_queue = new LinkedList<>();;
     @Override
     protected String setTextTitle() {
         return "弹窗测试页面";
@@ -113,9 +119,20 @@ public class Dialog_Activity extends BaseTitleActivity {
                 if(mlist.get(position).getArouter().equals("right_dialog")){
                     show_right_dialog();
                 }
+                if(mlist.get(position).getArouter().equals("mach_dialog")){
+                    show_more_dialog();
+                    mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            show_more_dialog();
+                        }
+                    });
+                }
             }
         });
-
+        dialog_queue.add(1);
+        dialog_queue.add(2);
+        dialog_queue.add(3);
 
     }
     @Override
@@ -136,7 +153,6 @@ public class Dialog_Activity extends BaseTitleActivity {
         bean_04.setName("登录弹窗");
         bean_04.setArouter("login_dialog");
         mlist.add(bean_04);
-
         Demo_list_bean bean_05 = new Demo_list_bean();
         bean_05.setName("底部弹窗");
         bean_05.setArouter("bottom_dialog");
@@ -145,6 +161,10 @@ public class Dialog_Activity extends BaseTitleActivity {
         bean_06.setName("侧边弹窗");
         bean_06.setArouter("right_dialog");
         mlist.add(bean_06);
+        Demo_list_bean bean_07 = new Demo_list_bean();
+        bean_07.setName("连续顺序弹窗");
+        bean_07.setArouter("mach_dialog");
+        mlist.add(bean_07);
         list_adapter.notifyDataSetChanged();
     }
     public void show_ad_dialog(){
@@ -166,6 +186,7 @@ public class Dialog_Activity extends BaseTitleActivity {
             @Override
             public void onClick(View v) {
                 mDialog.dismiss();
+//                show_more_dialog();
             }
         });
     }
@@ -209,13 +230,16 @@ public class Dialog_Activity extends BaseTitleActivity {
             public void onClick(View v) {
                 ToastUtils.showShortToast("啊!我假装退出了");
                 mDialog.dismiss();
+//                ARouter.getInstance().build(Arouter_path.TEST_IMAGE_PAGE).navigation();
+
+//                show_more_dialog();
             }
         });
         tv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mDialog.dismiss();
-
+//                show_more_dialog();
             }
         });
     }
@@ -265,6 +289,7 @@ public class Dialog_Activity extends BaseTitleActivity {
     public void show_bottom_dialog(){
         mDialog = new Dialog(this,R.style.ActionSheetDialogStyle);
         View inflate = LayoutInflater.from(this).inflate(R.layout.bottom_dialog, null);
+        LinearLayout ll_body = inflate.findViewById(R.id.ll_body);
         mDialog.setContentView(inflate);
         Window dialogWindow = mDialog.getWindow();
         dialogWindow.setGravity( Gravity.BOTTOM);
@@ -273,6 +298,13 @@ public class Dialog_Activity extends BaseTitleActivity {
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         dialogWindow.setAttributes(lp);
         mDialog.show();
+        ll_body.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.dismiss();
+//                show_more_dialog();
+            }
+        });
 
     }
     public void show_right_dialog(){
@@ -287,6 +319,20 @@ public class Dialog_Activity extends BaseTitleActivity {
         dialogWindow.setAttributes(lp);
         mDialog.show();
 
+    }
+    /**连续弹窗*/
+    public void show_more_dialog(){
+        if(!dialog_queue.isEmpty()) {
+            int dialog_flag = dialog_queue.poll();
+
+            if (dialog_flag == 1) {
+                show_ad_dialog();
+            } else if (dialog_flag == 2) {
+                show_exit_dialog();
+            } else if (dialog_flag == 3) {
+                show_bottom_dialog();
+            }
+        }
     }
     /**
      * 打开权限设置界面

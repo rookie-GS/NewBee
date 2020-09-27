@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScanActivity"/>
+        <activity android:name=".Custom_Indecotor_Activity"></activity>
+        <activity android:name=".Custom_View_Activity" />
+        <activity android:name=".ScanActivity" />
         <activity android:name=".QRActivity" />
         <activity android:name=".Pic_selector_Activity" />
         <activity android:name=".ZH_tab_Activity" />

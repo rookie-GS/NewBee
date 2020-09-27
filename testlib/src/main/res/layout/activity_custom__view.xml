@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".Custom_View_Activity">
+    <com.example.base_common_lib.ui.custom_view.My_Circle_View
+        android:id="@+id/mc_one"
+        android:layout_width="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="100dp"/>
+    <com.example.base_common_lib.ui.custom_view.My_Circle_full_View
+        android:id="@+id/mc_two"
+        android:layout_width="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="100dp"/>
+</LinearLayout>
