@@ -14,6 +14,8 @@ import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
 import com.example.base_common_lib.Utils.GlideUtils;
 import com.example.base_common_lib.ui.custom_view.CustomCircleProgressBar;
 
+import java.util.ArrayList;
+
 @Route( path = Arouter_path.TEST_CIRCLE_BOTTOM_PAGE)
 public class Circle_bottom_Activity extends BaseTitleActivity {
     private static final String TAG = "Circle_bottom_Activity";
@@ -24,6 +26,8 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
     View view_fake;
     int Animation_time = 2000;
     private AlphaAnimation alphaAnimation;
+    ArrayList<Integer> imagelist = new ArrayList<>();
+    int image_index = 0;
 
     @Override
     protected String setTextTitle() {
@@ -48,7 +52,20 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
         view_fake = findViewById(R.id.view_fake);
         view_fake.setVisibility(View.VISIBLE);
         iv_pic = findViewById(R.id.iv_pic);
-        GlideUtils.load_image(iv_pic, R.mipmap.sexy_img);
+        imagelist.add(R.mipmap.sexy_01);
+        imagelist.add(R.mipmap.sexy_02);
+        imagelist.add(R.mipmap.sexy_03);
+        imagelist.add(R.mipmap.sexy_04);
+        imagelist.add(R.mipmap.sexy_05);
+        imagelist.add(R.mipmap.sexy_06);
+        imagelist.add(R.mipmap.sexy_07);
+        imagelist.add(R.mipmap.sexy_08);
+        imagelist.add(R.mipmap.sexy_09);
+        imagelist.add(R.mipmap.sexy_10);
+        imagelist.add(R.mipmap.sexy_11);
+        imagelist.add(R.mipmap.sexy_12);
+        imagelist.add(R.mipmap.sexy_13);
+
         progressBar = findViewById(R.id.ccp_bt);
         progressBar.setRound_time(Animation_time);
         //第一个参数开始的透明度，第二个参数结束的透明度
@@ -88,6 +105,8 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
                         if(!is_full_flag){
                             continue_flag = false;
                             progressBar.start();
+                            Log.e(TAG, "tupian: "+imagelist.get(image_index) );
+                            GlideUtils.load_image(iv_pic, imagelist.get(image_index));
                             view_fake.setVisibility(View.GONE);
                             iv_pic.startAnimation(alphaAnimation);
                         }else {
@@ -105,6 +124,10 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
                             continue_flag = true;
                             iv_pic.clearAnimation();
                             view_fake.setVisibility(View.VISIBLE);
+                            image_index = image_index+1;
+                            if(image_index>=imagelist.size()){
+                                image_index = 0;
+                            }
                         }
                     break;
             }
