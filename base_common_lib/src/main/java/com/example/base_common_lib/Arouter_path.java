@@ -38,4 +38,7 @@ public class Arouter_path {
     public static final String TEST_CUSTOM_VIEW_PAGE = "/test/customview";
     /**自定义指示器页*/
     public static final String TEST_CUSTOM_INDECOTOR_PAGE = "/test/indecotor";
+    /**圆形进度条页*/
+    public static final String TEST_CIRCLE_BOTTOM_PAGE = "/test/circle_bottom";
+
 }

@@ -114,6 +114,10 @@ public class DemoMainActivity extends BaseTitleActivity implements View.OnClickL
         bean_10.setName("自定义指示器测试");
         bean_10.setArouter(Arouter_path.TEST_CUSTOM_INDECOTOR_PAGE);
         mList.add(bean_10);
+        Demo_list_bean bean_11 = new Demo_list_bean();
+        bean_11.setName("圆形进度条测试");
+        bean_11.setArouter(Arouter_path.TEST_CIRCLE_BOTTOM_PAGE);
+        mList.add(bean_11);
         demo_list_adapter.notifyDataSetChanged();
     }
 

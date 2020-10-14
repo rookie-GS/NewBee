@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+
+    tools:context=".Circle_bottom_Activity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/iv_pic"
+            android:layout_margin="20dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/sexy_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <View
+            android:id="@+id/view_fake"
+            android:layout_margin="20dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <com.example.base_common_lib.ui.custom_view.CustomCircleProgressBar
+            android:id="@+id/ccp_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:direction="top"
+            app:max_progress="100"
+            app:outside_color="#8DFA4C48"
+            app:inside_bg_color="@color/red_02"
+            app:progress_text_color="@color/white"
+            app:progress_text_size="@dimen/dk_font_size_22"
+            app:outside_radius="60dp"
+            app:inside_color="@color/gray_02"
+            app:progress="0"
+            app:progress_width="12dp"/>
+        <Button
+            android:visibility="gone"
+            android:id="@+id/bt_reset"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="重置"
+            android:layout_marginTop="50dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
