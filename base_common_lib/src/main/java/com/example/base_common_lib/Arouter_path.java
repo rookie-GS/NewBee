@@ -40,5 +40,9 @@ public class Arouter_path {
     public static final String TEST_CUSTOM_INDECOTOR_PAGE = "/test/indecotor";
     /**圆形进度条页*/
     public static final String TEST_CIRCLE_BOTTOM_PAGE = "/test/circle_bottom";
+    /**设置解锁码页*/
+    public static final String TEST_SETLOCKING_PAGE = "/test/set_locking_page";
+    /**解锁码页*/
+    public static final String TEST_LOCKING_PAGE = "/test/locking_page";
 
 }

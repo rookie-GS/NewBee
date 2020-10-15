@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Circle_bottom_Activity"></activity>
+        <activity android:name=".Open_Lock_Activity"></activity>
+        <activity android:name=".Locking_Activity" />
+        <activity android:name=".Circle_bottom_Activity" />
         <activity android:name=".Custom_Indecotor_Activity" />
         <activity android:name=".Custom_View_Activity" />
         <activity android:name=".ScanActivity" />

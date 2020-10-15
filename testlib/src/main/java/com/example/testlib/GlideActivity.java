@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
 import com.example.base_common_lib.Constant;
+import com.example.base_common_lib.Image_Url;
 import com.example.base_common_lib.Utils.GlideUtils;
 
 import jp.wasabeef.glide.transformations.BlurTransformation;
@@ -51,10 +52,10 @@ public class GlideActivity extends BaseTitleActivity {
     @SuppressLint("CheckResult")
     @Override
     protected void initData() {
-        GlideUtils.load_image(iv_pic_one,Constant.kobe_image_url);
-        GlideUtils.load_dration_image(iv_pic_two,Constant.kobe_image_url,3000);
-        GlideUtils.load_circle_image(iv_pic_three,Constant.kobe_image_url);
-        GlideUtils.load_radius_corner_image(iv_pic_four,Constant.kobe_image_url,50);
-        GlideUtils.load_blur_image(iv_pic_five,Constant.kobe_image_url,20);
+        GlideUtils.load_image(iv_pic_one, Image_Url.kobe_image_url);
+        GlideUtils.load_dration_image(iv_pic_two,Image_Url.kobe_image_url,3000);
+        GlideUtils.load_circle_image(iv_pic_three,Image_Url.kobe_image_url);
+        GlideUtils.load_radius_corner_image(iv_pic_four,Image_Url.kobe_image_url,50);
+        GlideUtils.load_blur_image(iv_pic_five,Image_Url.kobe_image_url,20);
     }
 }

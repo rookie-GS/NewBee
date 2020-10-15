@@ -18,6 +18,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
 import com.example.base_common_lib.Constant;
+import com.example.base_common_lib.Image_Url;
 import com.example.base_common_lib.Utils.GlideUtils;
 import com.example.base_common_lib.Utils.ToastUtils;
 import com.google.android.material.navigation.NavigationView;
@@ -67,7 +68,7 @@ public class Nagvion_Activity extends BaseTitleActivity {
         mNavigationView = findViewById(R.id.nav_view);
         View drawView = mNavigationView.getHeaderView(0);
         iv_header = drawView.findViewById(R.id.iv_header);
-        GlideUtils.load_circle_image(iv_header,Constant.luka_image_url);
+        GlideUtils.load_circle_image(iv_header, Image_Url.luka_image_url);
         tv_out.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RtlHardcoded")
             @Override

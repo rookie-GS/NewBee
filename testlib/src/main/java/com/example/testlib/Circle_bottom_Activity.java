@@ -3,18 +3,29 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
+import com.example.base_common_lib.Image_Url;
 import com.example.base_common_lib.Utils.GlideUtils;
+import com.example.base_common_lib.Utils.ToastUtils;
 import com.example.base_common_lib.ui.custom_view.CustomCircleProgressBar;
+import com.github.ihsg.demo.util.PatternHelper;
+import com.github.ihsg.patternlocker.OnPatternChangeListener;
+import com.github.ihsg.patternlocker.PatternLockerView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Route( path = Arouter_path.TEST_CIRCLE_BOTTOM_PAGE)
 public class Circle_bottom_Activity extends BaseTitleActivity {
@@ -24,11 +35,16 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
     boolean is_full_flag = false;
     ImageView iv_pic;
     View view_fake;
+    TextView tv_dirty,tv_clear;
     int Animation_time = 2000;
     private AlphaAnimation alphaAnimation;
-    ArrayList<Integer> imagelist = new ArrayList<>();
+    ArrayList<String> imagelist_clear = new ArrayList<>();
+    ArrayList<Integer> imagelist_dirty = new ArrayList<>();
+    boolean image_model = true,lock_vis = false;
     int image_index = 0;
-
+    PatternHelper patternHelper;
+    PatternLockerView patternLockerView;
+    RelativeLayout rl_lock_view;
     @Override
     protected String setTextTitle() {
         return "圆形进度条页面";
@@ -49,24 +65,93 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
     @SuppressLint({"ClickableViewAccessibility", "Range"})
     @Override
     protected void init(Bundle savedInstanceState) {
+        setIU();
+        setAnimation();
+    }
+    @Override
+    protected void initData() {
+
+        imagelist_clear.add(Image_Url.Kobe_image_url_04);
+        imagelist_clear.add(Image_Url.Nash_image_url);
+        imagelist_clear.add(Image_Url.AI_image_url_02);
+        imagelist_clear.add(Image_Url.Luka_image_url_02);
+//        imagelist_clear.add(Image_Url.cjk_image_url);
+
+        imagelist_clear.add(Image_Url.Melo_image_url);
+        imagelist_clear.add(Image_Url.Harden_image_url);
+        imagelist_clear.add(Image_Url.D_rose_image_url);
+        imagelist_clear.add(Image_Url.Kd_image_url);
+//        imagelist_clear.add(Image_Url.cjk_image_url_02);
+
+
+        imagelist_clear.add(Image_Url.Curry_image_url);
+        imagelist_clear.add(Image_Url.LBJ_image_url);
+        imagelist_clear.add(Image_Url.DW_image_url);
+        imagelist_clear.add(Image_Url.cxk_image_url);
+//        imagelist_clear.add(Image_Url.cjk_image_url_03);
+
+
+
+        imagelist_dirty.add(R.mipmap.sexy_01);
+        imagelist_dirty.add(R.mipmap.sexy_02);
+        imagelist_dirty.add(R.mipmap.sexy_03);
+        imagelist_dirty.add(R.mipmap.sexy_04);
+        imagelist_dirty.add(R.mipmap.sexy_05);
+        imagelist_dirty.add(R.mipmap.sexy_06);
+        imagelist_dirty.add(R.mipmap.sexy_07);
+        imagelist_dirty.add(R.mipmap.sexy_08);
+        imagelist_dirty.add(R.mipmap.sexy_09);
+        imagelist_dirty.add(R.mipmap.sexy_10);
+        imagelist_dirty.add(R.mipmap.sexy_11);
+        imagelist_dirty.add(R.mipmap.sexy_12);
+        imagelist_dirty.add(R.mipmap.sexy_13);
+
+
+
+    }
+    private void setIU(){
+        rl_lock_view = findViewById(R.id.rl_lock_view);
+        patternLockerView = findViewById(R.id.patternLockerView);
+        patternHelper = new PatternHelper();
+        tv_dirty = findViewById(R.id.tv_dirty);
+        tv_clear = findViewById(R.id.tv_clear);
         view_fake = findViewById(R.id.view_fake);
         view_fake.setVisibility(View.VISIBLE);
         iv_pic = findViewById(R.id.iv_pic);
-        imagelist.add(R.mipmap.sexy_01);
-        imagelist.add(R.mipmap.sexy_02);
-        imagelist.add(R.mipmap.sexy_03);
-        imagelist.add(R.mipmap.sexy_04);
-        imagelist.add(R.mipmap.sexy_05);
-        imagelist.add(R.mipmap.sexy_06);
-        imagelist.add(R.mipmap.sexy_07);
-        imagelist.add(R.mipmap.sexy_08);
-        imagelist.add(R.mipmap.sexy_09);
-        imagelist.add(R.mipmap.sexy_10);
-        imagelist.add(R.mipmap.sexy_11);
-        imagelist.add(R.mipmap.sexy_12);
-        imagelist.add(R.mipmap.sexy_13);
-
         progressBar = findViewById(R.id.ccp_bt);
+
+
+        setting_locking();
+
+        tv_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG, "what_model: clear" );
+
+                if(!image_model){
+                    rl_lock_view.setVisibility(View.GONE);
+                    lock_vis = false;
+                    image_model = true;
+                    image_index = 0;
+                    GlideUtils.load_image(iv_pic, imagelist_clear.get(image_index));
+                    ToastUtils.showShortToast("非主流模式关闭");
+                }
+
+            }
+        });
+        tv_dirty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG, "what_model: dirty" );
+                if(image_model){
+                    rl_lock_view.setVisibility(View.VISIBLE);
+                    lock_vis = true;
+                }
+            }
+        });
+    }
+    @SuppressLint("ClickableViewAccessibility")
+    private void setAnimation(){
         progressBar.setRound_time(Animation_time);
         //第一个参数开始的透明度，第二个参数结束的透明度
         alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
@@ -105,8 +190,13 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
                         if(!is_full_flag){
                             continue_flag = false;
                             progressBar.start();
-                            Log.e(TAG, "tupian: "+imagelist.get(image_index) );
-                            GlideUtils.load_image(iv_pic, imagelist.get(image_index));
+                            if(image_model){
+                                Log.e(TAG, "setAnimation: 纯净模式" );
+                                GlideUtils.load_image(iv_pic, imagelist_clear.get(image_index));
+                            }else {
+                                Log.e(TAG, "setAnimation: 非主流模式" );
+                                GlideUtils.load_image(iv_pic, imagelist_dirty.get(image_index));
+                            }
                             view_fake.setVisibility(View.GONE);
                             iv_pic.startAnimation(alphaAnimation);
                         }else {
@@ -119,25 +209,80 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
                     //移动
                     break;
                 case MotionEvent.ACTION_UP:
-                        if(!is_full_flag){
-                            progressBar.reset();
-                            continue_flag = true;
-                            iv_pic.clearAnimation();
-                            view_fake.setVisibility(View.VISIBLE);
-                            image_index = image_index+1;
-                            if(image_index>=imagelist.size()){
+                    if(!is_full_flag){
+                        progressBar.reset();
+                        continue_flag = true;
+                        iv_pic.clearAnimation();
+                        view_fake.setVisibility(View.VISIBLE);
+                        image_index = image_index+1;
+                        if(image_model){
+                            if(image_index>= imagelist_clear.size()){
+                                image_index = 0;
+                            }
+                        }else {
+                            if(image_index>= imagelist_dirty.size()){
                                 image_index = 0;
                             }
                         }
+
+                    }
                     break;
             }
             return true;
         });
+    }
 
+    private void setting_locking(){
+        patternLockerView.setOnPatternChangedListener(new OnPatternChangeListener() {
+            @Override
+            public void onStart(@NotNull PatternLockerView patternLockerView) {
+                Log.e(TAG, "locking___onStart: " );
+            }
+
+            @Override
+            public void onChange(@NotNull PatternLockerView patternLockerView, @NotNull List<Integer> list) {
+                Log.e(TAG, "locking___onChange: " );
+            }
+
+            @Override
+            public void onComplete(@NotNull PatternLockerView patternLockerView, @NotNull List<Integer> list) {
+
+                Log.e(TAG, "locking___onComplete: " );
+
+                patternHelper.validateForChecking(list);
+                boolean isOk =patternHelper.isOk();
+                patternLockerView.updateStatus(isOk);
+                ToastUtils.showShortToast(patternHelper.getMessage());
+                patternLockerView.clearHitState();
+                if(isOk){
+                        image_model = false;
+                        image_index = 0;
+                        GlideUtils.load_image(iv_pic, imagelist_dirty.get(image_index));
+                    ToastUtils.showShortToast("非主流模式开启");
+
+                }
+                rl_lock_view.setVisibility(View.GONE);
+                lock_vis = false;
+            }
+
+            @Override
+            public void onClear(@NotNull PatternLockerView patternLockerView) {
+                Log.e(TAG, "locking___onClear: " );
+            }
+        });
     }
 
     @Override
-    protected void initData() {
-
+    //安卓重写返回键事件
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            if(lock_vis){
+                rl_lock_view.setVisibility(View.GONE);
+                lock_vis = false;
+            }else {
+                finish();
+            }
+        }
+        return true;
     }
 }

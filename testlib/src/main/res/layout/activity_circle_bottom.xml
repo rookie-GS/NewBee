@@ -27,12 +27,46 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </RelativeLayout>
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_lock_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white" >
+
+        <com.github.ihsg.patternlocker.PatternLockerView
+            android:layout_centerInParent="true"
+            android:id="@+id/patternLockerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="50dp"
+            app:plv_enableSkip="true"
+            app:plv_enableHapticFeedback="true"
+            app:plv_color="@color/gray"
+            app:plv_enableAutoClean="false"
+            app:plv_errorColor="@color/red"
+            app:plv_fillColor="@color/white"
+            app:plv_hitColor="@color/colorPrimary"
+            app:plv_lineWidth="3dp" />
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:orientation="vertical"
-        android:gravity="center">
-
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/tv_clear"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="主流版"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            />
         <com.example.base_common_lib.ui.custom_view.CustomCircleProgressBar
             android:id="@+id/ccp_bt"
             android:layout_width="wrap_content"
@@ -47,13 +81,17 @@
             app:inside_color="@color/gray_02"
             app:progress="0"
             app:progress_width="12dp"/>
-        <Button
-            android:visibility="gone"
-            android:id="@+id/bt_reset"
-            android:layout_width="100dp"
+        <TextView
+            android:id="@+id/tv_dirty"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="非主流版"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="50dp"
-            android:text="重置"
-            android:layout_marginTop="50dp"/>
+            />
 
     </LinearLayout>
 

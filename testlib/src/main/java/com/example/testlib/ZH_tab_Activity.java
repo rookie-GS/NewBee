@@ -11,6 +11,7 @@ import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseActivity;
 import com.example.base_common_lib.Base.CommonAdapter;
 import com.example.base_common_lib.Constant;
+import com.example.base_common_lib.Image_Url;
 import com.example.base_common_lib.Utils.GlideUtils;
 import com.example.base_common_lib.bean.Demo_list_bean;
 
@@ -55,10 +56,10 @@ public class ZH_tab_Activity extends BaseActivity {
         }
         adapter.notifyDataSetChanged();
 
-        GlideUtils.load_circle_image(iv_one, Constant.kobe_image_url);
-        GlideUtils.load_circle_image(iv_two,Constant.kobe_image_url);
-        GlideUtils.load_circle_image(iv_three,Constant.luka_image_url);
-        GlideUtils.load_circle_image(iv_four,Constant.luka_image_url);
+        GlideUtils.load_circle_image(iv_one, Image_Url.kobe_image_url);
+        GlideUtils.load_circle_image(iv_two,Image_Url.kobe_image_url);
+        GlideUtils.load_circle_image(iv_three,Image_Url.luka_image_url);
+        GlideUtils.load_circle_image(iv_four,Image_Url.luka_image_url);
 
     }
 }

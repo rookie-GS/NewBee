@@ -57,6 +57,8 @@ static def allModuleDependencies(DependencyHandler dependencyHandler) {
     dependencyHandler.implementation 'com.zhihu.android:matisse:0.5.3-beta3'
     //二维码扫描
     dependencyHandler.implementation 'com.mylhyl:zxingscanner:2.1.6'
+    //手势解锁码
+    dependencyHandler.implementation 'com.github.ihsg:PatternLocker:2.5.6'
 
 }
 ext.allModuleDependencies = this.&allModuleDependencies

@@ -1,23 +1,18 @@
 package com.example.testlib;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
 import com.example.base_common_lib.Base.CommonAdapter;
 import com.example.base_common_lib.Utils.LogUtils;
 import com.example.base_common_lib.bean.Demo_list_bean;
+import com.github.ihsg.demo.util.PatternHelper;
 
 import java.util.ArrayList;
 
@@ -56,13 +51,17 @@ public class DemoMainActivity extends BaseTitleActivity implements View.OnClickL
         rv_list.setLayoutManager(new LinearLayoutManager(this));
         demo_list_adapter = new CommonAdapter(mList);
         rv_list.setAdapter(demo_list_adapter);
-        demo_list_adapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+        demo_list_adapter.setOnItemClickListener((adapter, view, position) -> {
+            if(mList.get(position).getArouter().equals(Arouter_path.TEST_SETLOCKING_PAGE)){
+                if(new PatternHelper().having_pwd()){
+                    ARouter.getInstance().build(Arouter_path.TEST_LOCKING_PAGE).navigation();
+                }else {
+                    ARouter.getInstance().build(Arouter_path.TEST_SETLOCKING_PAGE).navigation();
+                }
+            }else {
                 ARouter.getInstance().build(mList.get(position).getArouter()).navigation();
             }
         });
-   ;
     }
 
     @Override
@@ -118,6 +117,10 @@ public class DemoMainActivity extends BaseTitleActivity implements View.OnClickL
         bean_11.setName("圆形进度条测试");
         bean_11.setArouter(Arouter_path.TEST_CIRCLE_BOTTOM_PAGE);
         mList.add(bean_11);
+        Demo_list_bean bean_12 = new Demo_list_bean();
+        bean_12.setName("设置解锁码");
+        bean_12.setArouter(Arouter_path.TEST_SETLOCKING_PAGE);
+        mList.add(bean_12);
         demo_list_adapter.notifyDataSetChanged();
     }
 

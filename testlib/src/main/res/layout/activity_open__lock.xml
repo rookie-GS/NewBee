@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".Open_Lock_Activity">
+    <TextView
+        android:id="@+id/tv_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="输入图案"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:gravity="center"/>
+    <com.github.ihsg.patternlocker.PatternLockerView
+        android:id="@+id/patternLockerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+        app:plv_enableSkip="true"
+        app:plv_enableHapticFeedback="true"
+        app:plv_color="@color/gray"
+        app:plv_enableAutoClean="false"
+        app:plv_errorColor="@color/red"
+        app:plv_fillColor="@color/white"
+        app:plv_hitColor="@color/colorPrimary"
+        app:plv_lineWidth="3dp" />
+</LinearLayout>
