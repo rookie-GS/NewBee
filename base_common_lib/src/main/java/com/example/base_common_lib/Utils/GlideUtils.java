@@ -16,7 +16,7 @@ import jp.wasabeef.glide.transformations.BlurTransformation;
  * 时间：
  */
 public class GlideUtils {
-    public static int BG_DEF = R.color.lightgrey;
+    public static int BG_DEF = R.color.tran_white;
     public static Context mContext = Other_Utils.getContext();
 
     //加载普通图片start
@@ -42,6 +42,15 @@ public class GlideUtils {
     }
     @SuppressLint("CheckResult")
     public static void load_image(ImageView iv, Uri url){
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.placeholder(BG_DEF);
+        Glide.with(mContext)
+                .load(url)
+                .apply(requestOptions)
+                .into(iv);
+    }
+    @SuppressLint("CheckResult")
+    public static void load_image(ImageView iv, Object url){
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(BG_DEF);
         Glide.with(mContext)
@@ -113,6 +122,16 @@ public class GlideUtils {
     }
     @SuppressLint("CheckResult")
     public static void load_blur_image(ImageView iv,int url,int radius){
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.placeholder(BG_DEF);
+        requestOptions.transform(new BlurTransformation(radius, 2));
+        Glide.with(mContext)
+                .load(url)
+                .apply(requestOptions)
+                .into(iv);
+    }
+    @SuppressLint("CheckResult")
+    public static void load_blur_image(ImageView iv,Object url,int radius){
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(BG_DEF);
         requestOptions.transform(new BlurTransformation(radius, 2));

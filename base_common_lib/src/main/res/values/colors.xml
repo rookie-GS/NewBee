@@ -5,6 +5,8 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <color name="tran_white">#00ffffff</color>
+
     <color name="windowBackground">#F4F4F4</color>
     <color name="transparent">@null</color>
     <color name="gray_02">#d1cdcd</color><!--进度条底色-->

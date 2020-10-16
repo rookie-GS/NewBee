@@ -78,6 +78,9 @@ open class PatternHelper {
     private fun convert2String(hitIndexList: List<Int>): String {
         return hitIndexList.toString()
     }
+    public fun getremainTimes():Int{
+        return remainTimes;
+    }
 
     private fun saveToStorage(gesturePwd: String?) {
         val encryptPwd = encrypt(gesturePwd!!)

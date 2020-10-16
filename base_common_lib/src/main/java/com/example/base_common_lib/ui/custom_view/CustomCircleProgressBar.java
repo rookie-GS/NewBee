@@ -279,11 +279,12 @@ public class CustomCircleProgressBar extends View {
 
     /**重置*/
     public void reset(){
-        animator.cancel();
-        setProgress(0);
-        setText_status("长按");
-        Iprogress_lisener.progress_stop();
-
+        if(animator!=null){
+            animator.cancel();
+            setProgress(0);
+            setText_status("长按");
+            Iprogress_lisener.progress_stop();
+        }
     }
     /**开启*/
     public void start(){

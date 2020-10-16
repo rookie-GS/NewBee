@@ -1,19 +1,22 @@
 package com.example.testlib;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.didichuxing.doraemonkit.DoraemonKit;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
 import com.example.base_common_lib.Image_Url;
@@ -38,20 +41,27 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
     boolean continue_flag = true;
     boolean is_full_flag = false;
     PhotoView iv_pic;
-    View view_fake;
-    TextView tv_dirty,tv_clear;
+    ImageView view_fake,iv_simple_show,iv_simple_bottom;
+
     int Animation_time = 2000;
-    private AlphaAnimation alphaAnimation;
     ArrayList<String> imagelist_clear = new ArrayList<>();
-    ArrayList<Integer> imagelist_dirty = new ArrayList<>();
-    boolean image_model = true,lock_vis = false;
+    ArrayList<Object> imagelist_dirty = new ArrayList<>();
+    boolean image_model = true;
     int image_index = 0;
     PatternHelper patternHelper;
     PatternLockerView patternLockerView;
     RelativeLayout rl_lock_view;
     LinearLayout ll_controller;
-    boolean controller_vis = true;
     int distens = 0;
+    private AnimatorSet animatorFake_hide;
+    private AnimatorSet animatorFake_show;
+    int blur_num = 100;
+
+    CardView cv_clear_model,cv_dirty_model;
+    LinearLayout ll_intro;
+    private AnimatorSet animatorSetBt_hide;
+    private AnimatorSet animatorSetBt_show;
+
     @Override
     protected String setTextTitle() {
         return "圆形进度条页面";
@@ -72,7 +82,9 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
     @SuppressLint({"ClickableViewAccessibility", "Range"})
     @Override
     protected void init(Bundle savedInstanceState) {
+        DoraemonKit.hide();
         setIU();
+        setView_fake();
         setAnimation();
     }
     @Override
@@ -82,23 +94,40 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
         imagelist_clear.add(Image_Url.Nash_image_url);
         imagelist_clear.add(Image_Url.AI_image_url_02);
         imagelist_clear.add(Image_Url.Luka_image_url_02);
-//        imagelist_clear.add(Image_Url.cjk_image_url);
-
         imagelist_clear.add(Image_Url.Melo_image_url);
         imagelist_clear.add(Image_Url.Harden_image_url);
         imagelist_clear.add(Image_Url.D_rose_image_url);
         imagelist_clear.add(Image_Url.Kd_image_url);
-//        imagelist_clear.add(Image_Url.cjk_image_url_02);
-
-
         imagelist_clear.add(Image_Url.Curry_image_url);
         imagelist_clear.add(Image_Url.LBJ_image_url);
         imagelist_clear.add(Image_Url.DW_image_url);
+        imagelist_clear.add(Image_Url.ai_image_url);
+        imagelist_clear.add(Image_Url.Kobe_image_url_03);
+        imagelist_clear.add(Image_Url.nba_10);
+        imagelist_clear.add(Image_Url.nash_image_url);
+        imagelist_clear.add(Image_Url.nba_01);
+        imagelist_clear.add(Image_Url.nba_02);
+        imagelist_clear.add(Image_Url.nba_03);
+        imagelist_clear.add(Image_Url.nba_04);
+        imagelist_clear.add(Image_Url.nba_05);
+        imagelist_clear.add(Image_Url.nba_06);
+        imagelist_clear.add(Image_Url.nba_07);
+        imagelist_clear.add(Image_Url.nba_08);        imagelist_clear.add(Image_Url.nba_08);
+        imagelist_clear.add(Image_Url.nba_09);
         imagelist_clear.add(Image_Url.cxk_image_url);
-//        imagelist_clear.add(Image_Url.cjk_image_url_03);
 
 
 
+        imagelist_dirty.add(Image_Url.cjk_image_url);
+        imagelist_dirty.add(Image_Url.bdyjy_image_url);
+        imagelist_dirty.add(Image_Url.cjk_image_url_02);
+        imagelist_dirty.add(Image_Url.sexy_01);
+        imagelist_dirty.add(Image_Url.sexy_02);
+        imagelist_dirty.add(Image_Url.sexy_03);
+        imagelist_dirty.add(Image_Url.sexy_04);
+        imagelist_dirty.add(Image_Url.sexy_05);
+        imagelist_dirty.add(Image_Url.sexy_06);
+        imagelist_dirty.add(Image_Url.sexy_07);
         imagelist_dirty.add(R.mipmap.sexy_01);
         imagelist_dirty.add(R.mipmap.sexy_02);
         imagelist_dirty.add(R.mipmap.sexy_03);
@@ -113,64 +142,76 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
         imagelist_dirty.add(R.mipmap.sexy_12);
         imagelist_dirty.add(R.mipmap.sexy_13);
 
-        distens = DimenUtil.dp2px(this,150);
+
+        init_fake_view();
 
     }
     private void setIU(){
-        ll_controller = findViewById(R.id.ll_controller);
+        /**设置模式选择界面*/
+        ll_intro = findViewById(R.id.ll_intro);
+        ll_intro.setVisibility(View.VISIBLE);
+        cv_clear_model = findViewById(R.id.cv_clear_model);
+        cv_dirty_model = findViewById(R.id.cv_dirty_model);
+        cv_clear_model.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ll_intro.setVisibility(View.GONE);
+            }
+        });
+        cv_dirty_model.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ll_intro.setVisibility(View.GONE);
+                rl_lock_view.setVisibility(View.VISIBLE);
+
+                image_model = false;
+                init_fake_view();
+                image_index = 0;
+                is_full_flag = false;
+            }
+        });
+        /**设置锁界面*/
         rl_lock_view = findViewById(R.id.rl_lock_view);
         patternLockerView = findViewById(R.id.patternLockerView);
         patternHelper = new PatternHelper();
-        tv_dirty = findViewById(R.id.tv_dirty);
-        tv_clear = findViewById(R.id.tv_clear);
-        view_fake = findViewById(R.id.view_fake);
-        view_fake.setVisibility(View.VISIBLE);
-        iv_pic = findViewById(R.id.iv_pic);
-        iv_pic.setOnPhotoTapListener((view, x, y) -> {
-            if(controller_vis){
-                hideAnimatorSet(ll_controller);
-            }else {
-                showAnimatorSet(ll_controller);
-
-            }
-            controller_vis = !controller_vis;
-        });
-        progressBar = findViewById(R.id.ccp_bt);
-
-
         setting_locking();
 
-        tv_clear.setOnClickListener(v -> {
-            Log.e(TAG, "what_model: clear" );
 
-            if(!image_model){
-                rl_lock_view.setVisibility(View.GONE);
-                lock_vis = false;
-                image_model = true;
-
-
-                reset();
-                image_index = 0;
-                is_full_flag = false;
-                ToastUtils.showShortToast("非主流模式关闭");
+        /**设置图片主界面*/
+        iv_simple_bottom = findViewById(R.id.iv_simple_bottom);
+        iv_simple_show = findViewById(R.id.iv_simple_show);
+        iv_simple_show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iv_simple_show.setVisibility(View.GONE);
+                animatorSetBt_hide.start();
 
             }
-
         });
-        tv_dirty.setOnClickListener(v -> {
-            Log.e(TAG, "what_model: dirty" );
-            if(image_model){
-                rl_lock_view.setVisibility(View.VISIBLE);
-                lock_vis = true;
+        view_fake = findViewById(R.id.view_fake);
+        view_fake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showLongToast("长按解锁观看");
             }
         });
+        iv_pic = findViewById(R.id.iv_pic);
+        iv_pic.setOnPhotoTapListener((view, x, y) -> {
+                iv_simple_show.setVisibility(View.VISIBLE);
+                animatorSetBt_show.start();
+        });
+        /**设置刷新按钮*/
+        ll_controller = findViewById(R.id.ll_controller);
+        progressBar = findViewById(R.id.ccp_bt);
+        bt_hide_show_AnimatorSet();
+
+
     }
+
+    /**设置长按动画*/
     @SuppressLint("ClickableViewAccessibility")
     private void setAnimation(){
         progressBar.setRound_time(Animation_time);
-        //第一个参数开始的透明度，第二个参数结束的透明度
-        alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
-        alphaAnimation.setDuration(Animation_time);//多长时间完成这个动作
         progressBar.setIprogress_lisener(new CustomCircleProgressBar.IProgress_status_lisener() {
             @Override
             public void progress_start() {
@@ -185,7 +226,8 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
             @Override
             public void progress_stop() {
                 Log.e(TAG, "progress_stop: ");
-                alphaAnimation.cancel();
+                animatorFake_hide.cancel();
+                animatorFake_show.start();
             }
 
             @Override
@@ -204,16 +246,22 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
                         view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                         if(!is_full_flag){
                             continue_flag = false;
-                            progressBar.start();
+                            int bottom_index = image_index+1;
                             if(image_model){
-                                Log.e(TAG, "setAnimation: 纯净模式" );
-                                GlideUtils.load_image(iv_pic, imagelist_clear.get(image_index));
+                                if(bottom_index>=imagelist_clear.size()){
+                                    bottom_index = 0;
+                                }
+                                GlideUtils.load_blur_image(iv_simple_bottom, imagelist_clear.get(bottom_index),blur_num);
+
                             }else {
-                                Log.e(TAG, "setAnimation: 非主流模式" );
-                                GlideUtils.load_image(iv_pic, imagelist_dirty.get(image_index));
+                                if(bottom_index>=imagelist_dirty.size()){
+                                    bottom_index = 0;
+                                }
+                                GlideUtils.load_blur_image(iv_simple_bottom, imagelist_dirty.get(bottom_index),blur_num);
+
                             }
-                            view_fake.setVisibility(View.GONE);
-                            iv_pic.startAnimation(alphaAnimation);
+                            progressBar.start();
+                            animatorFake_hide.start();
                         }else {
                             is_full_flag = false;
                         }
@@ -232,38 +280,101 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
             return true;
         });
     }
-
+    /**图片重置*/
     private void reset(){
         progressBar.reset();
         continue_flag = true;
-        iv_pic.clearAnimation();
-        view_fake.setVisibility(View.VISIBLE);
+        animatorFake_hide.cancel();
+        animatorFake_show.start();
+        is_full_flag = false;
         image_index = image_index+1;
         if(image_model){
             if(image_index>= imagelist_clear.size()){
                 image_index = 0;
             }
+            Log.e(TAG, "setAnimation: 纯净模式" );
+            GlideUtils.load_blur_image(view_fake, imagelist_clear.get(image_index),blur_num);
+            GlideUtils.load_image(iv_simple_show, imagelist_clear.get(image_index));
+            GlideUtils.load_image(iv_pic, imagelist_clear.get(image_index));
+
         }else {
             if(image_index>= imagelist_dirty.size()){
                 image_index = 0;
             }
+            Log.e(TAG, "setAnimation: 非主流模式" );
+            GlideUtils.load_blur_image(view_fake, imagelist_dirty.get(image_index),blur_num);
+            GlideUtils.load_image(iv_simple_show, imagelist_dirty.get(image_index));
+            GlideUtils.load_image(iv_pic, imagelist_dirty.get(image_index));
+
         }
     }
-    public void hideAnimatorSet(View v) {
-        ObjectAnimator animator1 = ObjectAnimator.ofFloat(v, "translationY", 0f, distens);
-        ObjectAnimator animator2 = ObjectAnimator.ofFloat(v, "alpha", 1f, 0f);
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.setDuration(100);
-        animatorSet.play(animator1).with(animator2);
-        animatorSet.start();
+    /**图片初始化*/
+    private void init_fake_view(){
+        progressBar.reset();
+        continue_flag = true;
+        animatorFake_show.start();
+        image_index = 0;
+        is_full_flag = false;
+        if(image_model){
+            Log.e(TAG, "setAnimation: 纯净模式" );
+
+            GlideUtils.load_blur_image(view_fake, imagelist_clear.get(image_index),blur_num);
+            GlideUtils.load_image(iv_simple_show, imagelist_clear.get(0));
+            GlideUtils.load_image(iv_pic, imagelist_clear.get(0));
+            GlideUtils.load_blur_image(iv_simple_bottom, imagelist_clear.get(1),blur_num);
+
+
+        }else {
+            Log.e(TAG, "setAnimation: 非主流模式" );
+            GlideUtils.load_blur_image(view_fake, imagelist_dirty.get(image_index),blur_num);
+            GlideUtils.load_image(iv_simple_show, imagelist_dirty.get(0));
+            GlideUtils.load_image(iv_pic, imagelist_dirty.get(0));
+            GlideUtils.load_blur_image(iv_simple_bottom, imagelist_dirty.get(1),blur_num);
+
+
+        }
     }
-    public void showAnimatorSet(View v) {
-        ObjectAnimator animator1 = ObjectAnimator.ofFloat(v, "translationY", distens, 0f);
-        ObjectAnimator animator2 = ObjectAnimator.ofFloat(v, "alpha", 0f, 1f);
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.setDuration(100);
-        animatorSet.play(animator1).with(animator2);
-        animatorSet.start();
+    /**控制按钮的隐藏与可见*/
+    public void bt_hide_show_AnimatorSet() {
+        distens = DimenUtil.dp2px(this,150);
+        ObjectAnimator animator_hide_01 = ObjectAnimator.ofFloat(ll_controller, "translationY", 0f, distens);
+        ObjectAnimator animator_hide_02 = ObjectAnimator.ofFloat(ll_controller, "alpha", 1f, 0f);
+        animatorSetBt_hide = new AnimatorSet();
+        animatorSetBt_hide.setDuration(100);
+        animatorSetBt_hide.play(animator_hide_01).with(animator_hide_02);
+        ObjectAnimator animator_show_01 = ObjectAnimator.ofFloat(ll_controller, "translationY", distens, 0f);
+        ObjectAnimator animator_show_02 = ObjectAnimator.ofFloat(ll_controller, "alpha", 0f, 1f);
+        animatorSetBt_show = new AnimatorSet();
+        animatorSetBt_show.setDuration(100);
+        animatorSetBt_show.play(animator_show_01).with(animator_show_02);
+    }
+
+
+    public void setView_fake() {
+        ObjectAnimator animator_hide = ObjectAnimator.ofFloat(view_fake, "alpha", 1f, 0f);
+        animatorFake_hide = new AnimatorSet();
+        animatorFake_hide.setDuration(Animation_time);
+        animatorFake_hide.play(animator_hide);
+        animatorFake_hide.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                view_fake.setVisibility(View.GONE);
+            }
+        });
+
+
+        ObjectAnimator animator_show = ObjectAnimator.ofFloat(view_fake, "alpha", 0f, 1f);
+        animatorFake_show = new AnimatorSet();
+        animatorFake_show.setDuration(1);
+        animatorFake_show.play(animator_show);
+        animatorFake_show.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+                view_fake.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     private void setting_locking(){
@@ -286,18 +397,18 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
                 patternHelper.validateForChecking(list);
                 boolean isOk =patternHelper.isOk();
                 patternLockerView.updateStatus(isOk);
-                ToastUtils.showShortToast(patternHelper.getMessage());
                 patternLockerView.clearHitState();
                 if(isOk){
-                    image_model = false;
-                    reset();
-                    image_index = 0;
-                    is_full_flag = false;
                     ToastUtils.showShortToast("非主流模式开启");
-
+                    rl_lock_view.setVisibility(View.GONE);
+                }else {
+                    if(patternHelper.getremainTimes()==0){
+                        finish();
+                    }else {
+                        ToastUtils.showShortToast(patternHelper.getMessage());
+                    }
                 }
-                rl_lock_view.setVisibility(View.GONE);
-                lock_vis = false;
+
             }
 
             @Override
@@ -307,17 +418,4 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
         });
     }
 
-    @Override
-    //安卓重写返回键事件
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_BACK){
-            if(lock_vis){
-                rl_lock_view.setVisibility(View.GONE);
-                lock_vis = false;
-            }else {
-                finish();
-            }
-        }
-        return true;
-    }
 }
