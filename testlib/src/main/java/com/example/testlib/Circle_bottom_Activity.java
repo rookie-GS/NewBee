@@ -1,4 +1,6 @@
 package com.example.testlib;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,7 +9,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,9 +17,11 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseTitleActivity;
 import com.example.base_common_lib.Image_Url;
+import com.example.base_common_lib.Utils.DimenUtil;
 import com.example.base_common_lib.Utils.GlideUtils;
 import com.example.base_common_lib.Utils.ToastUtils;
 import com.example.base_common_lib.ui.custom_view.CustomCircleProgressBar;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.github.ihsg.demo.util.PatternHelper;
 import com.github.ihsg.patternlocker.OnPatternChangeListener;
 import com.github.ihsg.patternlocker.PatternLockerView;
@@ -33,7 +37,7 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
     CustomCircleProgressBar progressBar;
     boolean continue_flag = true;
     boolean is_full_flag = false;
-    ImageView iv_pic;
+    PhotoView iv_pic;
     View view_fake;
     TextView tv_dirty,tv_clear;
     int Animation_time = 2000;
@@ -45,6 +49,9 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
     PatternHelper patternHelper;
     PatternLockerView patternLockerView;
     RelativeLayout rl_lock_view;
+    LinearLayout ll_controller;
+    boolean controller_vis = true;
+    int distens = 0;
     @Override
     protected String setTextTitle() {
         return "圆形进度条页面";
@@ -55,7 +62,7 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
     }
     @Override
     protected boolean setToolbvis() {
-        return true;
+        return false;
     }
     @Override
     protected int getContentView() {
@@ -106,10 +113,11 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
         imagelist_dirty.add(R.mipmap.sexy_12);
         imagelist_dirty.add(R.mipmap.sexy_13);
 
-
+        distens = DimenUtil.dp2px(this,150);
 
     }
     private void setIU(){
+        ll_controller = findViewById(R.id.ll_controller);
         rl_lock_view = findViewById(R.id.rl_lock_view);
         patternLockerView = findViewById(R.id.patternLockerView);
         patternHelper = new PatternHelper();
@@ -118,35 +126,42 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
         view_fake = findViewById(R.id.view_fake);
         view_fake.setVisibility(View.VISIBLE);
         iv_pic = findViewById(R.id.iv_pic);
+        iv_pic.setOnPhotoTapListener((view, x, y) -> {
+            if(controller_vis){
+                hideAnimatorSet(ll_controller);
+            }else {
+                showAnimatorSet(ll_controller);
+
+            }
+            controller_vis = !controller_vis;
+        });
         progressBar = findViewById(R.id.ccp_bt);
 
 
         setting_locking();
 
-        tv_clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e(TAG, "what_model: clear" );
+        tv_clear.setOnClickListener(v -> {
+            Log.e(TAG, "what_model: clear" );
 
-                if(!image_model){
-                    rl_lock_view.setVisibility(View.GONE);
-                    lock_vis = false;
-                    image_model = true;
-                    image_index = 0;
-                    GlideUtils.load_image(iv_pic, imagelist_clear.get(image_index));
-                    ToastUtils.showShortToast("非主流模式关闭");
-                }
+            if(!image_model){
+                rl_lock_view.setVisibility(View.GONE);
+                lock_vis = false;
+                image_model = true;
+
+
+                reset();
+                image_index = 0;
+                is_full_flag = false;
+                ToastUtils.showShortToast("非主流模式关闭");
 
             }
+
         });
-        tv_dirty.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e(TAG, "what_model: dirty" );
-                if(image_model){
-                    rl_lock_view.setVisibility(View.VISIBLE);
-                    lock_vis = true;
-                }
+        tv_dirty.setOnClickListener(v -> {
+            Log.e(TAG, "what_model: dirty" );
+            if(image_model){
+                rl_lock_view.setVisibility(View.VISIBLE);
+                lock_vis = true;
             }
         });
     }
@@ -210,26 +225,45 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
                     break;
                 case MotionEvent.ACTION_UP:
                     if(!is_full_flag){
-                        progressBar.reset();
-                        continue_flag = true;
-                        iv_pic.clearAnimation();
-                        view_fake.setVisibility(View.VISIBLE);
-                        image_index = image_index+1;
-                        if(image_model){
-                            if(image_index>= imagelist_clear.size()){
-                                image_index = 0;
-                            }
-                        }else {
-                            if(image_index>= imagelist_dirty.size()){
-                                image_index = 0;
-                            }
-                        }
-
+                        reset();
                     }
                     break;
             }
             return true;
         });
+    }
+
+    private void reset(){
+        progressBar.reset();
+        continue_flag = true;
+        iv_pic.clearAnimation();
+        view_fake.setVisibility(View.VISIBLE);
+        image_index = image_index+1;
+        if(image_model){
+            if(image_index>= imagelist_clear.size()){
+                image_index = 0;
+            }
+        }else {
+            if(image_index>= imagelist_dirty.size()){
+                image_index = 0;
+            }
+        }
+    }
+    public void hideAnimatorSet(View v) {
+        ObjectAnimator animator1 = ObjectAnimator.ofFloat(v, "translationY", 0f, distens);
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(v, "alpha", 1f, 0f);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setDuration(100);
+        animatorSet.play(animator1).with(animator2);
+        animatorSet.start();
+    }
+    public void showAnimatorSet(View v) {
+        ObjectAnimator animator1 = ObjectAnimator.ofFloat(v, "translationY", distens, 0f);
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(v, "alpha", 0f, 1f);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setDuration(100);
+        animatorSet.play(animator1).with(animator2);
+        animatorSet.start();
     }
 
     private void setting_locking(){
@@ -255,9 +289,10 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
                 ToastUtils.showShortToast(patternHelper.getMessage());
                 patternLockerView.clearHitState();
                 if(isOk){
-                        image_model = false;
-                        image_index = 0;
-                        GlideUtils.load_image(iv_pic, imagelist_dirty.get(image_index));
+                    image_model = false;
+                    reset();
+                    image_index = 0;
+                    is_full_flag = false;
                     ToastUtils.showShortToast("非主流模式开启");
 
                 }

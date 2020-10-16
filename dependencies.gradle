@@ -59,6 +59,8 @@ static def allModuleDependencies(DependencyHandler dependencyHandler) {
     dependencyHandler.implementation 'com.mylhyl:zxingscanner:2.1.6'
     //手势解锁码
     dependencyHandler.implementation 'com.github.ihsg:PatternLocker:2.5.6'
+    //photoview
+    dependencyHandler.implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
 }
 ext.allModuleDependencies = this.&allModuleDependencies
