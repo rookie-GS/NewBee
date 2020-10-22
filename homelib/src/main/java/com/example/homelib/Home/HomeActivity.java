@@ -21,6 +21,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.didichuxing.doraemonkit.DoraemonKit;
 import com.example.base_common_lib.Arouter_path;
 import com.example.base_common_lib.Base.BaseActivity.BaseMVPActivity;
 import com.example.base_common_lib.Utils.SpannableStringUtils;
@@ -67,7 +68,7 @@ public class HomeActivity extends BaseMVPActivity<IHomeView, MainPreSenter> impl
 
     @Override
     protected boolean setToolbvis() {
-        return true;
+        return false;
     }
 
     @SuppressLint("CheckResult")

@@ -121,18 +121,10 @@ public class Dialog_Activity extends BaseTitleActivity {
                 }
                 if(mlist.get(position).getArouter().equals("mach_dialog")){
                     show_more_dialog();
-                    mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-                            show_more_dialog();
-                        }
-                    });
                 }
             }
         });
-        dialog_queue.add(1);
-        dialog_queue.add(2);
-        dialog_queue.add(3);
+
 
     }
     @Override
@@ -186,7 +178,7 @@ public class Dialog_Activity extends BaseTitleActivity {
             @Override
             public void onClick(View v) {
                 mDialog.dismiss();
-//                show_more_dialog();
+                show_more_dialog();
             }
         });
     }
@@ -230,9 +222,7 @@ public class Dialog_Activity extends BaseTitleActivity {
             public void onClick(View v) {
                 ToastUtils.showShortToast("啊!我假装退出了");
                 mDialog.dismiss();
-//                ARouter.getInstance().build(Arouter_path.TEST_IMAGE_PAGE).navigation();
-
-//                show_more_dialog();
+                show_more_dialog();
             }
         });
         tv_cancel.setOnClickListener(new View.OnClickListener() {
@@ -332,6 +322,11 @@ public class Dialog_Activity extends BaseTitleActivity {
             } else if (dialog_flag == 3) {
                 show_bottom_dialog();
             }
+        }else {
+            dialog_queue.add(1);
+            dialog_queue.add(2);
+            dialog_queue.add(3);
+            show_more_dialog();
         }
     }
     /**

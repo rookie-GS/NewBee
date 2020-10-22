@@ -19,6 +19,7 @@ public class App extends MultiDexApplication {
             ARouter.openLog();
             ARouter.openDebug();
             DoraemonKit.install(this);
+            DoraemonKit.hide();
             Logger.addLogAdapter(new AndroidLogAdapter());
         }
         //工具类初始化

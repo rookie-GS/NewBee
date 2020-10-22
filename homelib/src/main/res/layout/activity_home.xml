@@ -6,33 +6,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/lightgrey"
+    android:background="@color/black"
     tools:context=".Home.HomeActivity">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:orientation="vertical">
-            <TextView
-                android:layout_marginTop="120dp"
-                android:id="@+id/tv_message"
+            <com.mlx.neteasy.cutsomView.DimPleView
+                android:layout_centerInParent="true"
                 android:layout_width="match_parent"
+                android:layout_height="400dp">
+            </com.mlx.neteasy.cutsomView.DimPleView>
+            <TextView
+                android:paddingTop="50dp"
+                android:layout_centerInParent="true"
+                android:id="@+id/tv_message"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="落霞与孤鹜齐飞\n秋水共长天一色"
-                android:textColor="@color/black"
+                android:text="落霞与孤鹜齐飞\n秋水共长天一色\n\n-G JS"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
-
-    </ScrollView>
+        </RelativeLayout>
 
 </LinearLayout>

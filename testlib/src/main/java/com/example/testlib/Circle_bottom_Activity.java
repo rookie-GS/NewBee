@@ -82,7 +82,6 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
     @SuppressLint({"ClickableViewAccessibility", "Range"})
     @Override
     protected void init(Bundle savedInstanceState) {
-        DoraemonKit.hide();
         setIU();
         setView_fake();
         setAnimation();
@@ -112,7 +111,7 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
         imagelist_clear.add(Image_Url.nba_05);
         imagelist_clear.add(Image_Url.nba_06);
         imagelist_clear.add(Image_Url.nba_07);
-        imagelist_clear.add(Image_Url.nba_08);        imagelist_clear.add(Image_Url.nba_08);
+        imagelist_clear.add(Image_Url.nba_08);
         imagelist_clear.add(Image_Url.nba_09);
         imagelist_clear.add(Image_Url.cxk_image_url);
 
@@ -183,6 +182,7 @@ public class Circle_bottom_Activity extends BaseTitleActivity {
         iv_simple_show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                iv_pic.setRotationTo(0);
                 iv_simple_show.setVisibility(View.GONE);
                 animatorSetBt_hide.start();
 

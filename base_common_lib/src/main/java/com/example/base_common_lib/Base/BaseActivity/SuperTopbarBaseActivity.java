@@ -31,7 +31,6 @@ import io.reactivex.subjects.PublishSubject;
 public class SuperTopbarBaseActivity extends SuperActivity {
     public final PublishSubject<ActivityLifeCycleEvent> lifecycleSubject = PublishSubject.create();
     public Toolbar toolbar;
-
     public ViewStub title_view_stub;
     public Context mContext;
     /**当前页面的父布局*/
@@ -75,7 +74,8 @@ public class SuperTopbarBaseActivity extends SuperActivity {
         superViewLin = findViewById(R.id.super_view_lin);
         title_view_stub = findViewById(R.id.title_view_stub);
         if (toolbar != null) {
-            toolbar.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Other_Utils.dip2px(45)));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Other_Utils.dip2px(65));
+            toolbar.setLayoutParams(params);
         }
     }
 

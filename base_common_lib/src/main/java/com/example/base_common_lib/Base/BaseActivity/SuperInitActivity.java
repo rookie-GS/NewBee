@@ -1,17 +1,22 @@
 package com.example.base_common_lib.Base.BaseActivity;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import androidx.annotation.LayoutRes;
+import androidx.annotation.RequiresApi;
 
 import com.example.base_common_lib.R;
+import com.example.base_common_lib.Utils.StatusBarUtils;
 import com.example.base_common_lib.Utils.ToastUtils;
 
 
@@ -25,6 +30,8 @@ public abstract class SuperInitActivity extends SuperTopBarActivity {
 
     @Override
     protected void setContentViews(Bundle savedInstanceState) {
+        StatusBarUtils.transparentAndCoverStatusBar(this);
+        StatusBarUtils.setLightStatusBar(this, false);
         LayoutInflater.from(this).inflate(getContentView(), viewContent);
         //mvp
         initMvpPresenter();
