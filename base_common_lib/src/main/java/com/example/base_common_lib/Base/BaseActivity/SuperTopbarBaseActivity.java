@@ -44,6 +44,7 @@ public class SuperTopbarBaseActivity extends SuperActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme_nobar);
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_base_top_bar);

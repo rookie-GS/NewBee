@@ -31,7 +31,7 @@ public abstract class SuperInitActivity extends SuperTopBarActivity {
     @Override
     protected void setContentViews(Bundle savedInstanceState) {
         StatusBarUtils.transparentAndCoverStatusBar(this);
-        StatusBarUtils.setLightStatusBar(this, false);
+        StatusBarUtils.setLightStatusBar(this, true);
         LayoutInflater.from(this).inflate(getContentView(), viewContent);
         //mvp
         initMvpPresenter();

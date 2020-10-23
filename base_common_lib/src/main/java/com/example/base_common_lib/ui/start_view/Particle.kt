@@ -13,5 +13,6 @@ class Particle(
     var direction:Float,
     var speed:Float,
     var angle: Double,
-    var maxOffSet:Float
+    var maxOffSet:Float,
+    var view_color:Int
 )

@@ -72,14 +72,15 @@ public class MainActivity extends BaseActivity {
     }
     @Override
     protected void initData() {
+
+        Demo_list_bean bean1 = new Demo_list_bean();
+        bean1.setName("Coding_Home");
+        bean1.setArouter(Arouter_path.TEST_HOME_PAGE);
+        mList.add(bean1);
         Demo_list_bean bean = new Demo_list_bean();
         bean.setName("作者主页");
         bean.setArouter(Arouter_path.HOME_PAGE);
         mList.add(bean);
-        Demo_list_bean bean1 = new Demo_list_bean();
-        bean1.setName("Coding—Home");
-        bean1.setArouter(Arouter_path.TEST_HOME_PAGE);
-        mList.add(bean1);
         commonAdapter.notifyDataSetChanged();
     }
     @Override

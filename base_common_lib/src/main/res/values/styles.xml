@@ -111,4 +111,8 @@
         <item name="android:windowEnterAnimation">@anim/pop_right_show</item>
         <item name="android:windowExitAnimation">@anim/pop_right_hide</item>
     </style>
+
+    <style name="AppTheme.Launcher">
+        <item name="android:windowBackground">@drawable/window_background_statusbar_toolbar_tab</item>
+    </style>
 </resources>

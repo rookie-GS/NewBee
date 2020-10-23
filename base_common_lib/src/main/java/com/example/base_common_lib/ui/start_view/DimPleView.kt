@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.acos
 import kotlin.math.asin
 import kotlin.math.cos
@@ -31,12 +32,13 @@ class DimPleView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
     private var pos = FloatArray(2) //扩散圆上某一点的x,y
     private val tan = FloatArray(2)//扩散圆上某一点切线
     private val random = Random()
-    private val particleNumber = 3000//粒子数量
+    private val particleNumber = 5000//粒子数量
     private val particleRadius = 2.2f//粒子半径
-    private val diffusionRadius = 300f//扩散圆半径
+    private val diffusionRadius = 250f//扩散圆半径
+    private val color_list = arrayOf(Color.WHITE,Color.RED,Color.GRAY,Color.YELLOW,Color.GREEN)
 
     init {
-        animator.duration = 2000
+        animator.duration = 3000
         animator.repeatCount = -1
         animator.interpolator = LinearInterpolator()
         animator.addUpdateListener {
@@ -71,6 +73,7 @@ class DimPleView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
 
         val time = measureTimeMillis {
             particleList.forEachIndexed { index, particle ->
+                paint.color = color_list[0]
                 if (particle.offSet > 5f) {
                     paint.alpha = ((1f - particle.offSet / particle.maxOffSet) * 0.8 * 225f).toInt()
                     canvas.drawCircle(particle.x, particle.y, particle.radius, paint)
@@ -97,6 +100,7 @@ class DimPleView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
             val randomY = random.nextInt(6) - 3f
             val offSetX = random.nextInt(3)
             val direction = random.nextInt(3)-1.5f
+            val view_color = random.nextInt(5)
             val angel = acos(((pos[0] - mWidth / 2) / diffusionRadius).toDouble())
             val maxOffSet = random.nextInt(250) + 0f
             particleList.add(
@@ -109,7 +113,8 @@ class DimPleView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
                     direction,
                     speed,
                     angel,
-                    maxOffSet
+                    maxOffSet,
+                    view_color
                 )
             )
         }

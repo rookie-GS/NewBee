@@ -18,7 +18,8 @@
         android:theme="@style/AppTheme_nobar"
         tools:replace="android:theme"
         tools:ignore="MissingClass">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
