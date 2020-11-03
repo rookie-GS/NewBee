@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.testlib">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +19,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Open_Lock_Activity"></activity>
+        <activity android:name=".RecyclerViewActivity"/>
+        <activity android:name=".ForgroudActivity" />
+
+        <service
+            android:name=".MyForegroundService"
+            android:enabled="true"
+            android:excludeFromRecents="true"
+            android:exported="true" />
+
+        <activity android:name=".Open_Lock_Activity" />
         <activity android:name=".Locking_Activity" />
         <activity android:name=".Circle_bottom_Activity" />
         <activity android:name=".Custom_Indecotor_Activity" />
@@ -27,12 +40,17 @@
         <activity android:name=".Nagvion_Activity" />
         <activity android:name=".Net_Activity" />
         <activity android:name=".String_Builder_Activity" />
-        <activity android:name=".GlideActivity" />
+        <activity
+            android:name=".GlideActivity"
+            android:launchMode="singleTask" />
         <activity
             android:name=".Dialog_Activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
             android:screenOrientation="user" />
-        <activity android:name=".DemoMainActivity" />
+        <activity
+            android:name=".DemoMainActivity"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

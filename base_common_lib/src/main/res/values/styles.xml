@@ -113,6 +113,6 @@
     </style>
 
     <style name="AppTheme.Launcher">
-        <item name="android:windowBackground">@drawable/window_background_statusbar_toolbar_tab</item>
+        <item name="android:windowBackground">@mipmap/flush</item>
     </style>
 </resources>

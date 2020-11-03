@@ -69,7 +69,7 @@ public class Custom_Indecotor_Activity extends BaseTitleActivity {
             webView.setBackgroundColor(Color.GREEN);
             webView.getSettings().setDomStorageEnabled(true);
             webView.getSettings().setJavaScriptEnabled(true);
-            webView.loadUrl("https://www.baidu.com/");
+            webView.loadUrl("https://sdk.zaoyx.com/api/sdk/user/index?data=5lsnFyQ%2BRVo%2BGCh%2FZVEyEgUTXzkDURFfSURfDxtudmk3YThdLT5uPGQxH1cOWGAIGAUnQVciVGFjYCVvQ1AWQQEuAjc3Gh02WjcOenxfFCFjEjpAalgsPy17ZmEMNTBcXFcxDlUXWxN2Rz4GODcpBShBLiAPCldRMxA8b2cMGmJOGQgoT3A%2FT1EQXQNTOSEsAlRlJ3gWZ30lYE9TZlwua2UaUw%3D%3D&key=nRWqsy4TFBzp7pGJyVJy2rTUXKpPnh4jI55LOukSYA17PY19oH5s7GM3p%2Fo%2BQPZPKfdbX0AGHV4fztt8ooODzvUM1ZM5jBszGK%2FuafP7ipEvYdMng8k%2F6oggnTDwFU6OP2ol93ubwZ%2Fv%2BWSCN3fCh55Mj4DnvlTJfqXNOx%2FBam8%3D");
             mList.add(webView);
         }
         mVpAdapter = new Indecotor_PagerAdapter(mList);

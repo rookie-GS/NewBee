@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/gray"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:orientation="horizontal">
+    <TextView
+
+        android:background="@drawable/white_round25"
+        android:id="@+id/view_left"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="打开图库"
+        android:layout_height="match_parent"/>
+    <TextView
+        android:layout_width="5dp"
+        android:layout_height="match_parent"/>
+    <TextView
+        android:background="@drawable/white_round25"
+        android:id="@+id/view_right"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:text="打开弹窗"
+        android:gravity="center"
+        android:layout_height="match_parent"/>
+</LinearLayout>

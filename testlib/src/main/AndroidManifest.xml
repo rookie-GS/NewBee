@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme_nobar">
-        <activity android:name=".DemoMainActivity">
+        <activity android:name=".DemoMainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +31,13 @@
         <activity android:name=".QRActivity"/>
         <activity android:name=".Pic_selector_Activity" />
         <activity android:name=".ScanActivity"/>
-
+        <activity android:name=".ForgroudActivity"/>
+        <activity android:name=".RecyclerViewActivity"/>
+        <service
+            android:name=".MyForegroundService"
+            android:enabled="true"
+            android:exported="true"
+            android:excludeFromRecents="true"/>
     </application>
 
 </manifest>

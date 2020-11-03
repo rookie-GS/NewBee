@@ -44,5 +44,8 @@ public class Arouter_path {
     public static final String TEST_SETLOCKING_PAGE = "/test/set_locking_page";
     /**解锁码页*/
     public static final String TEST_LOCKING_PAGE = "/test/locking_page";
-
+    /**前台服务*/
+    public static final String TEST_FORGROUND_PAGE = "/test/forground_page";
+    /**前台服务*/
+    public static final String TEST_RECYCLERVIEW_PAGE = "/test/imagerecyclerview_page";
 }

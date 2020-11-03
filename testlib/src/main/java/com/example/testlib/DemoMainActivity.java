@@ -1,7 +1,6 @@
 package com.example.testlib;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.View;
 
@@ -121,11 +120,27 @@ public class DemoMainActivity extends BaseTitleActivity implements View.OnClickL
         bean_12.setName("设置解锁码");
         bean_12.setArouter(Arouter_path.TEST_SETLOCKING_PAGE);
         mList.add(bean_12);
+
+        Demo_list_bean bean_13 = new Demo_list_bean();
+        bean_13.setName("开启前台服务");
+        bean_13.setArouter(Arouter_path.TEST_FORGROUND_PAGE);
+        mList.add(bean_13);
+        demo_list_adapter.notifyDataSetChanged();
+
+        Demo_list_bean bean_14 = new Demo_list_bean();
+        bean_14.setName("图片列表");
+        bean_14.setArouter(Arouter_path.TEST_RECYCLERVIEW_PAGE);
+        mList.add(bean_14);
         demo_list_adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
