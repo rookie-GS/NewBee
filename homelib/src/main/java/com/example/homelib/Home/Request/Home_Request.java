@@ -1,7 +1,7 @@
 package com.example.homelib.Home.Request;
 
+
 import android.content.Context;
-import android.util.Log;
 
 import com.example.base_common_lib.Base.BaseModel.BaseHttpResult;
 import com.example.base_common_lib.Utils.LogUtils;
@@ -22,6 +22,7 @@ import io.reactivex.Observable;
 public class Home_Request {
 
     public void getHome_data(final Home_data_pre_lisener lisener){
+        LogUtils.e("mac_git_test");
         Map<String,Integer> map = new HashMap<String,Integer>();
         map.put("page",1);
         map.put("count",5);
@@ -40,7 +41,6 @@ public class Home_Request {
                     @Override
                     protected void onLoadError(String message) {
                         LogUtils.e("新浪新闻:"+message);
-                        Log.e("TAG", "onLoadErroreee: "+message );
                         lisener.onRequestErr(message);
                     }
                 });
